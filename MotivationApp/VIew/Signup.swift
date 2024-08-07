@@ -5,8 +5,10 @@ struct Signup: View {
     @State private var email = ""
     @State private var password = ""
     @State private var userName = ""
+    @State private var confirmPassword = ""
     @State private var isValidEmail = true
     @State private var isValidPassword = true
+    @State private var isValidConfirmPassword = true
     @State private var isValidUserName = true
 
 
@@ -60,6 +62,17 @@ struct Signup: View {
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(!isValidPassword ? .red : focusedField == .password ? Color("borderLine") : .white, lineWidth: 3)
+                            
+                    )
+                    .padding(.horizontal)
+                SecureField("Confirm password", text: $confirmPassword)
+                    .focused($focusedField, equals: .confirmPassword)
+                    .padding()
+                    .background(Color("Logbuttonlight"))
+                    .cornerRadius(20)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(!isValidConfirmPassword ? .red : focusedField == .confirmPassword ? Color("borderLine") : .white, lineWidth: 3)
                             
                     )
                     .padding(.horizontal)

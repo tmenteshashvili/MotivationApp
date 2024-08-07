@@ -3,6 +3,7 @@ import SwiftUI
 enum FocusedField {
     case email
     case password
+    case confirmPassword
     case username
 }
 

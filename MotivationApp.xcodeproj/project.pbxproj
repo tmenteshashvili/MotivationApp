@@ -15,6 +15,8 @@
 		3C60B33B2C610D6F00C80538 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B33A2C610D6E00C80538 /* Signup.swift */; };
 		3C60B33D2C610D7700C80538 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B33C2C610D7700C80538 /* Login.swift */; };
 		3C60B3402C612AFD00C80538 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B33F2C612AFD00C80538 /* Validations.swift */; };
+		3C60B3422C63C5A600C80538 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3412C63C5A600C80538 /* ForgotPassword.swift */; };
+		3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3432C63C85E00C80538 /* Remainder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		3C60B33A2C610D6E00C80538 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		3C60B33C2C610D7700C80538 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3C60B33F2C612AFD00C80538 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
+		3C60B3412C63C5A600C80538 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
+		3C60B3432C63C85E00C80538 /* Remainder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remainder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				3C60B3382C6106B300C80538 /* Welcome.swift */,
 				3C60B33A2C610D6E00C80538 /* Signup.swift */,
 				3C60B33C2C610D7700C80538 /* Login.swift */,
+				3C60B3412C63C5A600C80538 /* ForgotPassword.swift */,
+				3C60B3432C63C85E00C80538 /* Remainder.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -166,9 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C60B32C2C61068200C80538 /* ContentView.swift in Sources */,
+				3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */,
 				3C60B33D2C610D7700C80538 /* Login.swift in Sources */,
 				3C60B33B2C610D6F00C80538 /* Signup.swift in Sources */,
 				3C60B3392C6106B300C80538 /* Welcome.swift in Sources */,
+				3C60B3422C63C5A600C80538 /* ForgotPassword.swift in Sources */,
 				3C60B3402C612AFD00C80538 /* Validations.swift in Sources */,
 				3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */,
 			);

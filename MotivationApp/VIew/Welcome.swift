@@ -20,11 +20,11 @@ struct Welcome: View {
                     .resizable()
                     .scaledToFill()
                     .offset(y: 280)
+                
                 VStack {
                     Spacer()
                     Text("Motivation App")
-                        .font(.system(size: 35))
-                        .fontWeight(.bold)
+                        .font(.system(size: 35, weight: .heavy))
                         .offset(x: -25, y: -100)
                 Spacer()
                     Image("Sitting1")
