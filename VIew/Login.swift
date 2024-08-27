@@ -4,16 +4,25 @@ enum FocusedField {
     case email
     case password
     case confirmPassword
-    case username
+    case fullName
+}
+
+enum NextStack {
+    case forgotpassword
+    case signup
 }
 
 struct Login: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var message: String = ""
     @State private var isValidEmail = true
     @State private var isValidPassword = true
-
+    @State private var presentNextView = false
+    @State private var nextView: NextStack = .signup
+    
     @FocusState private var focusedField: FocusedField?
+    @StateObject private var loginVM = LoginViewModel()
     
     var body: some View {
         
@@ -22,7 +31,7 @@ struct Login: View {
                 Spacer()
                 Image("OnFloor1")
                 
-                TextField("Email", text: $email)
+                TextField("Email", text: $loginVM.email)
                     .focused($focusedField, equals: .email)
                     .padding()
                     .background(Color("Logbuttonlight"))
@@ -43,8 +52,7 @@ struct Login: View {
                         Spacer()
                     }
                 }
-                
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $loginVM.password)
                     .focused($focusedField, equals: .password)
                     .padding()
                     .background(Color("Logbuttonlight"))
@@ -52,7 +60,7 @@ struct Login: View {
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(!isValidPassword ? .red : focusedField == .password ? Color("borderLine") : .white, lineWidth: 3)
-                            
+                        
                     )
                     .padding(.horizontal)
                     .onChange(of: password) {
@@ -71,6 +79,8 @@ struct Login: View {
                     Spacer()
                     
                     Button {
+                        nextView = .forgotpassword
+                        presentNextView.toggle()
                         
                     } label: {
                         Text("Forgot your password?")
@@ -85,7 +95,7 @@ struct Login: View {
                 Spacer()
                 
                 Button {
-                    
+                    loginVM.login()
                 } label: {
                     Text("Sign in")
                         .font(.system(size: 20, weight: .semibold))
@@ -96,10 +106,12 @@ struct Login: View {
                 .background(Color("Logbuttondurk"))
                 .cornerRadius(20)
                 .padding(.horizontal)
-                
+            
             }
             
             Button {
+                nextView = .signup
+                presentNextView.toggle()
                 
             } label: {
                 HStack {
@@ -114,6 +126,19 @@ struct Login: View {
             }
             .padding(.horizontal)
             .padding(.bottom)
+            
+            Text(message)
+                .foregroundColor(.red)
+                .padding()
+            
+        }
+        .navigationDestination(isPresented: $presentNextView) {
+            switch nextView {
+            case .signup:
+                Signup()
+            case .forgotpassword:
+                ForgotPassword()
+            }
         }
         .navigationTitle("login")
         .navigationBarTitleDisplayMode(.inline)

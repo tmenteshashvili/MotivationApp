@@ -2,9 +2,10 @@
 import SwiftUI
 
 struct Remainder: View {
-    @State private var counter: Int = 10
-    @State private var startTime: Date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!
-    @State private var endTime: Date = Calendar.current.date(bySettingHour: 22, minute: 0, second: 0, of: Date())!
+    @ObservedObject var settings = ReminderSettings()
+//    @State private var counter: Int = 10
+//    @State private var startTime: Date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!
+//    @State private var endTime: Date = Calendar.current.date(bySettingHour: 22, minute: 0, second: 0, of: Date())!
     
     var body: some View {
         NavigationStack {
@@ -38,23 +39,23 @@ struct Remainder: View {
                         
                         
                         Button(action: {
-                            if counter > 0 {
-                                counter -= 1
+                            if settings.counter > 1 {
+                                settings.counter -= 1
                             }
                         }, label: {
                             Image(systemName: "minus.circle")
                                 .offset(x: 30)
                         })
                         
-                        Text("\(counter)X")
+                        Text("\(settings.counter)X")
                             .fontWeight(.semibold)
                             .frame(minWidth: 36)
                             .offset(x: 40)
                         
                         
                         Button(action: {
-                            if counter < 100 {
-                                counter += 1
+                            if settings.counter < 100 {
+                                settings.counter += 1
                             }
                         }, label: {
                             Image(systemName: "plus.circle")
@@ -67,7 +68,7 @@ struct Remainder: View {
                     Divider().frame(width: 350).background(Color("Logbuttondurk"))
                     
                     HStack {
-                        DatePicker("Start at:", selection: $startTime, displayedComponents: .hourAndMinute)
+                        DatePicker("Start at:", selection: $settings.startTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(CompactDatePickerStyle())
                             .font(.system(size: 20))
                             .offset(x: 5)
@@ -78,7 +79,7 @@ struct Remainder: View {
                     Divider().frame(width: 350).background(Color("Logbuttondurk"))
                     
                     HStack {
-                        DatePicker("End at:", selection: $endTime, displayedComponents: .hourAndMinute)
+                        DatePicker("End at:", selection: $settings.endTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(CompactDatePickerStyle())
                             .font(.system(size: 20))
                             .offset(x: 5)

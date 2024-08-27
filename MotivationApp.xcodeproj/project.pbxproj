@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D72C778A360053029B /* SignupViewModel.swift */; };
 		3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3292C61068200C80538 /* MotivationAppApp.swift */; };
 		3C60B32C2C61068200C80538 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B32B2C61068200C80538 /* ContentView.swift */; };
 		3C60B32E2C61068400C80538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B32D2C61068400C80538 /* Assets.xcassets */; };
@@ -17,9 +18,23 @@
 		3C60B3402C612AFD00C80538 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B33F2C612AFD00C80538 /* Validations.swift */; };
 		3C60B3422C63C5A600C80538 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3412C63C5A600C80538 /* ForgotPassword.swift */; };
 		3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3432C63C85E00C80538 /* Remainder.swift */; };
+		3C60B3462C63DECF00C80538 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3452C63DECF00C80538 /* Main.swift */; };
+		3C60B3492C6520E000C80538 /* DateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3482C6520E000C80538 /* DateType.swift */; };
+		3C60B3512C6E48AE00C80538 /* ReminderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */; };
+		3C60B3532C6E6D5500C80538 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3522C6E6D5500C80538 /* QuoteView.swift */; };
+		3C60B35D2C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3552C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf */; };
+		3C60B35E2C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3562C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf */; };
+		3C60B35F2C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3572C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf */; };
+		3C60B3602C74FA5100C80538 /* AveriaSerifLibre-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3582C74FA5100C80538 /* AveriaSerifLibre-Light.ttf */; };
+		3C60B3612C74FA5100C80538 /* AveriaSerifLibre-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3592C74FA5100C80538 /* AveriaSerifLibre-LightItalic.ttf */; };
+		3C60B3622C74FA5100C80538 /* AveriaSerifLibre-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B35A2C74FA5100C80538 /* AveriaSerifLibre-Regular.ttf */; };
+		3C60B3632C74FA5100C80538 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B35B2C74FA5100C80538 /* OFL.txt */; };
+		3C60B3662C762B4500C80538 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3652C762B4500C80538 /* Webservice.swift */; };
+		3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3672C76308C00C80538 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C56B6D72C778A360053029B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		3C60B3262C61068200C80538 /* MotivationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotivationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C60B3292C61068200C80538 /* MotivationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationAppApp.swift; sourceTree = "<group>"; };
 		3C60B32B2C61068200C80538 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -31,6 +46,20 @@
 		3C60B33F2C612AFD00C80538 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		3C60B3412C63C5A600C80538 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		3C60B3432C63C85E00C80538 /* Remainder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remainder.swift; sourceTree = "<group>"; };
+		3C60B3452C63DECF00C80538 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		3C60B3482C6520E000C80538 /* DateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateType.swift; sourceTree = "<group>"; };
+		3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettings.swift; sourceTree = "<group>"; };
+		3C60B3522C6E6D5500C80538 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		3C60B3552C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Bold.ttf"; sourceTree = "<group>"; };
+		3C60B3562C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3C60B3572C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Italic.ttf"; sourceTree = "<group>"; };
+		3C60B3582C74FA5100C80538 /* AveriaSerifLibre-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Light.ttf"; sourceTree = "<group>"; };
+		3C60B3592C74FA5100C80538 /* AveriaSerifLibre-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-LightItalic.ttf"; sourceTree = "<group>"; };
+		3C60B35A2C74FA5100C80538 /* AveriaSerifLibre-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Regular.ttf"; sourceTree = "<group>"; };
+		3C60B35B2C74FA5100C80538 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		3C60B3642C74FA9300C80538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3C60B3652C762B4500C80538 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		3C60B3672C76308C00C80538 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,8 +76,11 @@
 		3C60B31D2C61068200C80538 = {
 			isa = PBXGroup;
 			children = (
-				3C60B33E2C612AE800C80538 /* Helper */,
+				3C60B3542C74FA4400C80538 /* Font */,
 				3C60B3282C61068200C80538 /* MotivationApp */,
+				3C60B3372C61069700C80538 /* VIew */,
+				3C60B3472C6520A300C80538 /* Model */,
+				3C60B33E2C612AE800C80538 /* Helper */,
 				3C60B3272C61068200C80538 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,9 +96,9 @@
 		3C60B3282C61068200C80538 /* MotivationApp */ = {
 			isa = PBXGroup;
 			children = (
+				3C60B3642C74FA9300C80538 /* Info.plist */,
 				3C60B3292C61068200C80538 /* MotivationAppApp.swift */,
 				3C60B32B2C61068200C80538 /* ContentView.swift */,
-				3C60B3372C61069700C80538 /* VIew */,
 				3C60B32D2C61068400C80538 /* Assets.xcassets */,
 				3C60B32F2C61068400C80538 /* Preview Content */,
 			);
@@ -89,6 +121,8 @@
 				3C60B33C2C610D7700C80538 /* Login.swift */,
 				3C60B3412C63C5A600C80538 /* ForgotPassword.swift */,
 				3C60B3432C63C85E00C80538 /* Remainder.swift */,
+				3C60B3452C63DECF00C80538 /* Main.swift */,
+				3C60B3522C6E6D5500C80538 /* QuoteView.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -100,6 +134,40 @@
 			);
 			path = Helper;
 			sourceTree = "<group>";
+		};
+		3C60B3472C6520A300C80538 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C60B3482C6520E000C80538 /* DateType.swift */,
+				3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */,
+				3C60B3652C762B4500C80538 /* Webservice.swift */,
+				3C60B3672C76308C00C80538 /* LoginViewModel.swift */,
+				3C56B6D72C778A360053029B /* SignupViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3C60B3542C74FA4400C80538 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				3C60B35C2C74FA5100C80538 /* Averia_Serif_Libre */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		3C60B35C2C74FA5100C80538 /* Averia_Serif_Libre */ = {
+			isa = PBXGroup;
+			children = (
+				3C60B3552C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf */,
+				3C60B3562C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf */,
+				3C60B3572C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf */,
+				3C60B3582C74FA5100C80538 /* AveriaSerifLibre-Light.ttf */,
+				3C60B3592C74FA5100C80538 /* AveriaSerifLibre-LightItalic.ttf */,
+				3C60B35A2C74FA5100C80538 /* AveriaSerifLibre-Regular.ttf */,
+				3C60B35B2C74FA5100C80538 /* OFL.txt */,
+			);
+			path = Averia_Serif_Libre;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -160,6 +228,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C60B3312C61068400C80538 /* Preview Assets.xcassets in Resources */,
+				3C60B35D2C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf in Resources */,
+				3C60B35F2C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf in Resources */,
+				3C60B3632C74FA5100C80538 /* OFL.txt in Resources */,
+				3C60B35E2C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf in Resources */,
+				3C60B3602C74FA5100C80538 /* AveriaSerifLibre-Light.ttf in Resources */,
+				3C60B3612C74FA5100C80538 /* AveriaSerifLibre-LightItalic.ttf in Resources */,
+				3C60B3622C74FA5100C80538 /* AveriaSerifLibre-Regular.ttf in Resources */,
 				3C60B32E2C61068400C80538 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,14 +246,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */,
+				3C60B3462C63DECF00C80538 /* Main.swift in Sources */,
 				3C60B32C2C61068200C80538 /* ContentView.swift in Sources */,
 				3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */,
 				3C60B33D2C610D7700C80538 /* Login.swift in Sources */,
+				3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */,
+				3C60B3512C6E48AE00C80538 /* ReminderSettings.swift in Sources */,
 				3C60B33B2C610D6F00C80538 /* Signup.swift in Sources */,
 				3C60B3392C6106B300C80538 /* Welcome.swift in Sources */,
+				3C60B3662C762B4500C80538 /* Webservice.swift in Sources */,
 				3C60B3422C63C5A600C80538 /* ForgotPassword.swift in Sources */,
 				3C60B3402C612AFD00C80538 /* Validations.swift in Sources */,
 				3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */,
+				3C60B3532C6E6D5500C80538 /* QuoteView.swift in Sources */,
+				3C60B3492C6520E000C80538 /* DateType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +397,8 @@
 				DEVELOPMENT_TEAM = 6VNA79VZQ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MotivationApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +428,8 @@
 				DEVELOPMENT_TEAM = 6VNA79VZQ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MotivationApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

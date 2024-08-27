@@ -9,8 +9,10 @@ struct Welcome: View {
     @State private var presentNextView = false
     @State private var nextView: ViewStack = .login
     
-    var body: some View {
     
+    
+    var body: some View {
+        
         NavigationStack {
             ZStack {
                 Image("Ellipse1")
@@ -26,7 +28,7 @@ struct Welcome: View {
                     Text("Motivation App")
                         .font(.system(size: 35, weight: .heavy))
                         .offset(x: -25, y: -100)
-                Spacer()
+                    Spacer()
                     Image("Sitting1")
                         .frame(width: 370)
                         .padding(.top, 24)
