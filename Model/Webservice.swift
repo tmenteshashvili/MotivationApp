@@ -43,12 +43,10 @@ struct SignupRequestBody: Codable {
     let password_confirmation: String
 }
 
+struct ResetPasswordRequestBody: Codable {
+    let email: String
+}
 
-//struct SignupResponse: Codable {
-//    let token: String?
-//    let message: String
-//    let user: User
-//}
 
 class Webservice {
     
@@ -130,4 +128,36 @@ class Webservice {
  
     }
     
-}
+    func resetPassword(email: String, completion: @escaping(Result<String, AuthenticationError>) -> Void ) {
+            
+            guard let url = URL(string: "https://motivation.kakhoshvili.com/api/auth/reset-password") else {
+                completion(.failure(.custom(errorMessage: "URL is not correct")))
+                return
+            }
+            
+            let body = ResetPasswordRequestBody(email: email)
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = try? JSONEncoder().encode(body)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                
+                guard let data = data, error == nil else {
+                    completion(.failure(.custom(errorMessage: "No data received")))
+                    return
+                }
+                
+                guard let responseMessage = try? JSONDecoder().decode(String.self, from: data) else {
+                    completion(.failure(.invalidCredentials))
+                    return
+                }
+                
+                completion(.success(responseMessage))
+                
+            } .resume()
+        }
+    }
+    
+

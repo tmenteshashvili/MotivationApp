@@ -28,6 +28,7 @@ struct Welcome: View {
                     Text("Motivation App")
                         .font(.system(size: 35, weight: .heavy))
                         .offset(x: -25, y: -100)
+                        .foregroundStyle(.black)
                     Spacer()
                     Image("Sitting1")
                         .frame(width: 370)
@@ -74,6 +75,7 @@ struct Welcome: View {
                     }
                 }
             }
+            .background(.white)
         }
     }
 }

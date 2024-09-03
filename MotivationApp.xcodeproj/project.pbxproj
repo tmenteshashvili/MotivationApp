@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D72C778A360053029B /* SignupViewModel.swift */; };
+		3C56B6DA2C7E338E0053029B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D92C7E338E0053029B /* ForgotPasswordViewModel.swift */; };
+		3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6DB2C8778620053029B /* NotificationService.swift */; };
 		3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3292C61068200C80538 /* MotivationAppApp.swift */; };
 		3C60B32C2C61068200C80538 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B32B2C61068200C80538 /* ContentView.swift */; };
 		3C60B32E2C61068400C80538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B32D2C61068400C80538 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		3C56B6D72C778A360053029B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		3C56B6D92C7E338E0053029B /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		3C56B6DB2C8778620053029B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		3C60B3262C61068200C80538 /* MotivationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotivationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C60B3292C61068200C80538 /* MotivationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationAppApp.swift; sourceTree = "<group>"; };
 		3C60B32B2C61068200C80538 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,10 +143,12 @@
 			isa = PBXGroup;
 			children = (
 				3C60B3482C6520E000C80538 /* DateType.swift */,
-				3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */,
 				3C60B3652C762B4500C80538 /* Webservice.swift */,
 				3C60B3672C76308C00C80538 /* LoginViewModel.swift */,
 				3C56B6D72C778A360053029B /* SignupViewModel.swift */,
+				3C56B6D92C7E338E0053029B /* ForgotPasswordViewModel.swift */,
+				3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */,
+				3C56B6DB2C8778620053029B /* NotificationService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +260,8 @@
 				3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */,
 				3C60B3512C6E48AE00C80538 /* ReminderSettings.swift in Sources */,
 				3C60B33B2C610D6F00C80538 /* Signup.swift in Sources */,
+				3C56B6DA2C7E338E0053029B /* ForgotPasswordViewModel.swift in Sources */,
+				3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */,
 				3C60B3392C6106B300C80538 /* Welcome.swift in Sources */,
 				3C60B3662C762B4500C80538 /* Webservice.swift in Sources */,
 				3C60B3422C63C5A600C80538 /* ForgotPassword.swift in Sources */,

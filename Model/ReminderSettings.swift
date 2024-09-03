@@ -9,6 +9,7 @@ class ReminderSettings: ObservableObject {
     @Published var endTime: Date
     
     init() {
+        
         let savedCounter = UserDefaults.standard.integer(forKey: "counter")
         self.counter = savedCounter == 0 ? 10 : savedCounter  
         

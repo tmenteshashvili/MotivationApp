@@ -2,10 +2,8 @@ import SwiftUI
 
 struct ForgotPassword: View {
     
-    @State private var email = ""
-    @State private var isValidEmail = true
 
-    @FocusState private var focusedField: FocusedField?
+    @StateObject private var viewModel = ForgotPasswordViewModel()
 
     var body: some View {
         
@@ -19,31 +17,20 @@ struct ForgotPassword: View {
                     .foregroundStyle(.gray)
                     .padding()
                 
-                TextField("Email", text: $email)
-                    .focused($focusedField, equals: .email)
+                TextField("Email", text: $viewModel.email)
                     .padding()
                     .background(Color("Logbuttonlight"))
                     .cornerRadius(20)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(!isValidEmail ? .red : focusedField == .email ? Color("borderLine") : .white, lineWidth: 3)
-                    )
+                    .overlay(
+                           RoundedRectangle(cornerRadius: 20)
+                               .stroke(Color("borderLine"), lineWidth: 2)
+                       )
                     .padding(.horizontal)
-                    .onChange(of: email) {
-                        isValidEmail = Validator.validateEmail(email)
-                    }
-                if !isValidEmail {
-                    HStack {
-                        Text("Your email is not valid!")
-                            .foregroundStyle(.red)
-                            .padding(.leading)
-                        Spacer()
-                    }
-                }
+                  
                 Spacer()
                
                 Button {
-                    
+                    viewModel.resetPassword()
                 } label: {
                     Text("Submit")
                         .font(.system(size: 20, weight: .semibold))
@@ -55,9 +42,14 @@ struct ForgotPassword: View {
                 .cornerRadius(20)
                 .padding(.horizontal)
                 
-            }
-            
-           
+                
+                if !viewModel.message.isEmpty {
+                    Text(viewModel.message)
+                        .foregroundStyle(.red)
+                        .padding(.top)
+                }
+                
+            }           
         }
         .navigationTitle("forgot password")
         .navigationBarTitleDisplayMode(.inline)

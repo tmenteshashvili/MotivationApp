@@ -1,8 +1,11 @@
 
 import SwiftUI
+import UserNotifications
 
 struct Main: View {
     @State var quotas = [Quote]()
+    @State private var navigateToReminder = false
+
     
     var body: some View {
         
@@ -35,6 +38,7 @@ struct Main: View {
                 do {
                     quotas = try await fetchQuotas()
                     print("Quotes fetched: \(quotas)")
+                    navigateToReminder = true
                 } catch {
                     print("Failed to fetch quotes: \(error)")
                 }

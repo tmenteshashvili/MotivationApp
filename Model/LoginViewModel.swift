@@ -7,6 +7,8 @@ class LoginViewModel: ObservableObject {
     var password: String = ""
     var client: String = ""
     
+    @Published var isAuthenticated: Bool = false
+    
     func login() {
         
         let defaults = UserDefaults.standard
@@ -15,12 +17,17 @@ class LoginViewModel: ObservableObject {
             switch result {
             case .success(let token):
                 defaults.setValue(token, forKey: "JWT")
+                DispatchQueue.main.async {
+                    self.isAuthenticated = true
+                }
             case .failure(let error):
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.isAuthenticated = false
+                }
             }
         }
     }
-    
 }
 
 

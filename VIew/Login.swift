@@ -1,27 +1,21 @@
 
 import SwiftUI
-enum FocusedField {
-    case email
-    case password
-    case confirmPassword
-    case fullName
-}
+
+
 
 enum NextStack {
     case forgotpassword
     case signup
+    case remainder
 }
 
 struct Login: View {
-    @State private var email = ""
-    @State private var password = ""
+    
     @State private var message: String = ""
-    @State private var isValidEmail = true
-    @State private var isValidPassword = true
     @State private var presentNextView = false
     @State private var nextView: NextStack = .signup
     
-    @FocusState private var focusedField: FocusedField?
+    
     @StateObject private var loginVM = LoginViewModel()
     
     var body: some View {
@@ -30,51 +24,31 @@ struct Login: View {
             VStack(spacing: 15) {
                 Spacer()
                 Image("OnFloor1")
+                    .resizable()
+                    .scaledToFit()
+                    
                 
                 TextField("Email", text: $loginVM.email)
-                    .focused($focusedField, equals: .email)
                     .padding()
                     .background(Color("Logbuttonlight"))
                     .cornerRadius(20)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(!isValidEmail ? .red : focusedField == .email ? Color("borderLine") : .white, lineWidth: 3)
-                    )
+                    .overlay(
+                           RoundedRectangle(cornerRadius: 20)
+                               .stroke(Color("borderLine"), lineWidth: 2)
+                       )
                     .padding(.horizontal)
-                    .onChange(of: email) {
-                        isValidEmail = Validator.validateEmail(email)
-                    }
-                if !isValidEmail {
-                    HStack {
-                        Text("Your email is not valid!")
-                            .foregroundStyle(.red)
-                            .padding(.leading)
-                        Spacer()
-                    }
-                }
-                SecureField("Password", text: $loginVM.password)
-                    .focused($focusedField, equals: .password)
-                    .padding()
-                    .background(Color("Logbuttonlight"))
-                    .cornerRadius(20)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(!isValidPassword ? .red : focusedField == .password ? Color("borderLine") : .white, lineWidth: 3)
-                        
-                    )
-                    .padding(.horizontal)
-                    .onChange(of: password) {
-                        isValidPassword = Validator.validatePassword(password)
-                    }
-                if !isValidPassword {
-                    HStack {
-                        Text("Your password is not valid!")
-                            .foregroundStyle(.red)
-                            .padding(.leading)
-                        Spacer()
-                    }
-                }
                 
+                
+                SecureField("Password", text: $loginVM.password)
+                    .padding()
+                    .background(Color("Logbuttonlight"))
+                    .cornerRadius(20)
+                    .overlay(
+                           RoundedRectangle(cornerRadius: 20)
+                               .stroke(Color("borderLine"), lineWidth: 2)
+                       )
+                    .padding(.horizontal)
+                 
                 HStack {
                     Spacer()
                     
@@ -96,6 +70,7 @@ struct Login: View {
                 
                 Button {
                     loginVM.login()
+                    
                 } label: {
                     Text("Sign in")
                         .font(.system(size: 20, weight: .semibold))
@@ -106,11 +81,11 @@ struct Login: View {
                 .background(Color("Logbuttondurk"))
                 .cornerRadius(20)
                 .padding(.horizontal)
-            
+                
             }
             
             Button {
-                nextView = .signup
+                nextView = .remainder
                 presentNextView.toggle()
                 
             } label: {
@@ -132,16 +107,21 @@ struct Login: View {
                 .padding()
             
         }
+        
         .navigationDestination(isPresented: $presentNextView) {
             switch nextView {
             case .signup:
                 Signup()
             case .forgotpassword:
                 ForgotPassword()
+            case .remainder:
+                    Remainder(quotes:  [Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")] )
             }
         }
+        
         .navigationTitle("login")
         .navigationBarTitleDisplayMode(.inline)
+        .background(.white)
     }
 }
 
