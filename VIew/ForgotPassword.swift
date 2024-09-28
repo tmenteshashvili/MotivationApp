@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ForgotPassword: View {
     
-
+    @AppStorage("isDarkMode") private var isDark = false
     @StateObject private var viewModel = ForgotPasswordViewModel()
 
     var body: some View {
@@ -53,6 +53,8 @@ struct ForgotPassword: View {
         }
         .navigationTitle("forgot password")
         .navigationBarTitleDisplayMode(.inline)
+        .environment(\.colorScheme, isDark ? .dark : .light)
+
     }
 }
 

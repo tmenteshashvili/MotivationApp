@@ -2,20 +2,18 @@
 import SwiftUI
 
 struct Signup: View {
-    
-    @State private var message: String = ""
+    @AppStorage("isDarkMode") private var isDark = false
     @StateObject private var SignupVM = SignupViewModel()
-    
     
     var body: some View {
         NavigationStack {
             VStack {
                 Spacer()
-                  
+                
                 Image("Standing1")
                     .resizable()
                     .scaledToFit()
-                    
+                
                 
                 TextField("Email", text: $SignupVM.email)
                     .padding()
@@ -30,6 +28,7 @@ struct Signup: View {
                 
                 TextField("Fullname", text: $SignupVM.full_name)
                     .padding()
+                
                     .background(Color("Logbuttonlight"))
                     .cornerRadius(20)
                     .overlay(
@@ -41,6 +40,7 @@ struct Signup: View {
                 SecureField("Password", text: $SignupVM.password)
                     .padding()
                     .background(Color("Logbuttonlight"))
+                
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -51,6 +51,7 @@ struct Signup: View {
                 SecureField("Confirm password", text: $SignupVM.password_confirmation)
                     .padding()
                     .background(Color("Logbuttonlight"))
+                
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -75,56 +76,19 @@ struct Signup: View {
                 Text(SignupVM.message)
                     .foregroundColor(.red)
                     .padding()
-                
             }
+            .navigationDestination(isPresented: $SignupVM.isAuthenticated) {
+                           Remainder(howMany: 3, startTime: Date(), endTime: Date().addingTimeInterval(3600), quotes: [
+                               Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
+                           ])
+                       }
             
-            HStack(spacing: 15) {
-                Rectangle()
-                    .fill(Color("Txtebackground"))
-                    .frame(height: 1)
-                Text("OR")
-                Rectangle()
-                    .fill(Color("Txtebackground"))
-                    .frame(height: 1)
-            }
-            .padding(.horizontal,20)
-            .padding(.top,30)
-            
-            
-            HStack(spacing: 70) {
-                Button {
-                    
-                } label: {
-                    Image("google")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                    
-                }
-                Button {
-                    
-                } label: {
-                    Image("fb")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                    
-                }
-                Button {
-                    
-                } label: {
-                    Image("apple")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                }
-                
-            }
             .padding(.bottom,5)
             .navigationTitle("signup")
             .navigationBarTitleDisplayMode(.inline)
+            
         }
-        .background(.white)
+        .environment(\.colorScheme, isDark ? .dark : .light)
         
     }
     
@@ -133,3 +97,8 @@ struct Signup: View {
 #Preview {
     Signup()
 }
+
+
+
+
+

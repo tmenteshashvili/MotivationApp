@@ -3,8 +3,10 @@ import SwiftUI
 import UserNotifications
 
 struct Main: View {
+    @AppStorage("isDarkMode") private var isDark = false
     @State var quotas = [Quote]()
     @State private var navigateToReminder = false
+    @State private var showingSettingsSheet = false
 
     
     var body: some View {
@@ -33,7 +35,28 @@ struct Main: View {
                     PageTabViewStyle(indexDisplayMode: .never)
                 )
             }
-            
+            VStack {
+                Button(action: {
+                    
+                    self.showingSettingsSheet.toggle()
+                    
+                    
+                }) {
+                    Image(systemName: "gearshape")
+                        .renderingMode(.original)
+                        .foregroundColor(.white)
+                        .frame(width: 25, height: 25)
+                        .padding()
+                }.sheet(isPresented: $showingSettingsSheet) {
+                    Settings()
+                        .edgesIgnoringSafeArea(.bottom)
+                }
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(14)
+                .buttonStyle(PlainButtonStyle())
+            }
+            .offset(x: 150, y: -370)
+
             .task {
                 do {
                     quotas = try await fetchQuotas()
@@ -45,6 +68,8 @@ struct Main: View {
             }
         }
         .padding()
+        .environment(\.colorScheme, isDark ? .dark : .light)
+
     }
 }
 

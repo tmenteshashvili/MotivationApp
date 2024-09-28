@@ -8,6 +8,8 @@ class LoginViewModel: ObservableObject {
     var client: String = ""
     
     @Published var isAuthenticated: Bool = false
+    @Published var message: String = ""
+
     
     func login() {
         

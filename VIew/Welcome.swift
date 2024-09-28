@@ -6,18 +6,13 @@ enum ViewStack {
 }
 
 struct Welcome: View {
+    @AppStorage("isDarkMode") private var isDark = false
     @State private var presentNextView = false
     @State private var nextView: ViewStack = .login
-    
-    
-    
     var body: some View {
         
         NavigationStack {
             ZStack {
-                Image("Ellipse1")
-                    .offset(x: 120, y: -340)
-                
                 Image("Ellipse2.1")
                     .resizable()
                     .scaledToFill()
@@ -75,8 +70,8 @@ struct Welcome: View {
                     }
                 }
             }
-            .background(.white)
         }
+        .environment(\.colorScheme, isDark ? .dark : .light)
     }
 }
 

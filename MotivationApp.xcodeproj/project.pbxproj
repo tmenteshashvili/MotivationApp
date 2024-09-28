@@ -22,7 +22,6 @@
 		3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3432C63C85E00C80538 /* Remainder.swift */; };
 		3C60B3462C63DECF00C80538 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3452C63DECF00C80538 /* Main.swift */; };
 		3C60B3492C6520E000C80538 /* DateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3482C6520E000C80538 /* DateType.swift */; };
-		3C60B3512C6E48AE00C80538 /* ReminderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */; };
 		3C60B3532C6E6D5500C80538 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3522C6E6D5500C80538 /* QuoteView.swift */; };
 		3C60B35D2C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3552C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf */; };
 		3C60B35E2C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3562C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf */; };
@@ -33,6 +32,9 @@
 		3C60B3632C74FA5100C80538 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B35B2C74FA5100C80538 /* OFL.txt */; };
 		3C60B3662C762B4500C80538 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3652C762B4500C80538 /* Webservice.swift */; };
 		3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3672C76308C00C80538 /* LoginViewModel.swift */; };
+		3CD542C82C9C6F8F006BC896 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD542C72C9C6F8F006BC896 /* Settings.swift */; };
+		3CD542CA2C9C75B7006BC896 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */; };
+		3CD542CC2C9C76C2006BC896 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD542CB2C9C76C2006BC896 /* SettingsRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +54,6 @@
 		3C60B3432C63C85E00C80538 /* Remainder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remainder.swift; sourceTree = "<group>"; };
 		3C60B3452C63DECF00C80538 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		3C60B3482C6520E000C80538 /* DateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateType.swift; sourceTree = "<group>"; };
-		3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettings.swift; sourceTree = "<group>"; };
 		3C60B3522C6E6D5500C80538 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		3C60B3552C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Bold.ttf"; sourceTree = "<group>"; };
 		3C60B3562C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -64,6 +65,9 @@
 		3C60B3642C74FA9300C80538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3C60B3652C762B4500C80538 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		3C60B3672C76308C00C80538 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3CD542C72C9C6F8F006BC896 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3CD542CB2C9C76C2006BC896 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +130,9 @@
 				3C60B3412C63C5A600C80538 /* ForgotPassword.swift */,
 				3C60B3432C63C85E00C80538 /* Remainder.swift */,
 				3C60B3452C63DECF00C80538 /* Main.swift */,
+				3CD542C72C9C6F8F006BC896 /* Settings.swift */,
 				3C60B3522C6E6D5500C80538 /* QuoteView.swift */,
+				3CD542CB2C9C76C2006BC896 /* SettingsRow.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -147,8 +153,8 @@
 				3C60B3672C76308C00C80538 /* LoginViewModel.swift */,
 				3C56B6D72C778A360053029B /* SignupViewModel.swift */,
 				3C56B6D92C7E338E0053029B /* ForgotPasswordViewModel.swift */,
-				3C60B3502C6E48AE00C80538 /* ReminderSettings.swift */,
 				3C56B6DB2C8778620053029B /* NotificationService.swift */,
+				3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,11 +260,12 @@
 			files = (
 				3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */,
 				3C60B3462C63DECF00C80538 /* Main.swift in Sources */,
+				3CD542CC2C9C76C2006BC896 /* SettingsRow.swift in Sources */,
 				3C60B32C2C61068200C80538 /* ContentView.swift in Sources */,
 				3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */,
 				3C60B33D2C610D7700C80538 /* Login.swift in Sources */,
 				3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */,
-				3C60B3512C6E48AE00C80538 /* ReminderSettings.swift in Sources */,
+				3CD542C82C9C6F8F006BC896 /* Settings.swift in Sources */,
 				3C60B33B2C610D6F00C80538 /* Signup.swift in Sources */,
 				3C56B6DA2C7E338E0053029B /* ForgotPasswordViewModel.swift in Sources */,
 				3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */,
@@ -269,6 +276,7 @@
 				3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */,
 				3C60B3532C6E6D5500C80538 /* QuoteView.swift in Sources */,
 				3C60B3492C6520E000C80538 /* DateType.swift in Sources */,
+				3CD542CA2C9C75B7006BC896 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

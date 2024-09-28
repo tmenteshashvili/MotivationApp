@@ -1,8 +1,6 @@
 
 import SwiftUI
 
-
-
 enum NextStack {
     case forgotpassword
     case signup
@@ -10,11 +8,10 @@ enum NextStack {
 }
 
 struct Login: View {
-    
+    @AppStorage("isDarkMode") private var isDark = false
     @State private var message: String = ""
     @State private var presentNextView = false
-    @State private var nextView: NextStack = .signup
-    
+    @State private var nextView: NextStack = .remainder
     
     @StateObject private var loginVM = LoginViewModel()
     
@@ -26,16 +23,16 @@ struct Login: View {
                 Image("OnFloor1")
                     .resizable()
                     .scaledToFit()
-                    
+                
                 
                 TextField("Email", text: $loginVM.email)
                     .padding()
                     .background(Color("Logbuttonlight"))
                     .cornerRadius(20)
                     .overlay(
-                           RoundedRectangle(cornerRadius: 20)
-                               .stroke(Color("borderLine"), lineWidth: 2)
-                       )
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color("borderLine"), lineWidth: 2)
+                    )
                     .padding(.horizontal)
                 
                 
@@ -44,11 +41,11 @@ struct Login: View {
                     .background(Color("Logbuttonlight"))
                     .cornerRadius(20)
                     .overlay(
-                           RoundedRectangle(cornerRadius: 20)
-                               .stroke(Color("borderLine"), lineWidth: 2)
-                       )
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color("borderLine"), lineWidth: 2)
+                    )
                     .padding(.horizontal)
-                 
+                
                 HStack {
                     Spacer()
                     
@@ -84,8 +81,8 @@ struct Login: View {
                 
             }
             
+          
             Button {
-                nextView = .remainder
                 presentNextView.toggle()
                 
             } label: {
@@ -102,26 +99,22 @@ struct Login: View {
             .padding(.horizontal)
             .padding(.bottom)
             
-            Text(message)
+            Text(loginVM.message)
                 .foregroundColor(.red)
                 .padding()
             
         }
         
-        .navigationDestination(isPresented: $presentNextView) {
-            switch nextView {
-            case .signup:
-                Signup()
-            case .forgotpassword:
-                ForgotPassword()
-            case .remainder:
-                    Remainder(quotes:  [Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")] )
+        .navigationDestination(isPresented: $loginVM.isAuthenticated) {
+                Remainder( howMany: 3,
+                           startTime: Date(),
+                           endTime: Date().addingTimeInterval(3600),quotes:  [Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")] )
             }
-        }
-        
+
         .navigationTitle("login")
         .navigationBarTitleDisplayMode(.inline)
-        .background(.white)
+        .environment(\.colorScheme, isDark ? .dark : .light)
+        
     }
 }
 

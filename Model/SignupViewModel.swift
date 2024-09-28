@@ -7,9 +7,10 @@ class SignupViewModel: ObservableObject {
     var full_name: String = ""
     var password: String = ""
     var password_confirmation: String = ""
-    var message: String = ""
     
     @Published var isAuthenticated: Bool = false
+    @Published var message: String = ""
+
     
     func signup() {
         

@@ -1,9 +1,3 @@
-//
-//  QuoteView.swift
-//  MotivationApp
-//
-//  Created by Tako Menteshashvili on 15.08.24.
-//
 
 import SwiftUI
 
