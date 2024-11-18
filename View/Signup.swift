@@ -7,7 +7,7 @@ struct Signup: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            LazyVStack {
                 Spacer()
                 
                 Image("Standing1")
@@ -65,11 +65,12 @@ struct Signup: View {
                 } label: {
                     Text("Sign up")
                         .font(.system(size: 20, weight: .semibold))
-                        .foregroundStyle(Color("Txtebackground"))
+                        
+                    
                 }
                 .padding(.vertical)
                 .frame(maxWidth: .infinity)
-                .background(Color("Logbuttondurk"))
+                .background(Color("txt"))
                 .cornerRadius(20)
                 .padding(.horizontal)
                 
@@ -89,7 +90,6 @@ struct Signup: View {
             
         }
         .environment(\.colorScheme, isDark ? .dark : .light)
-        
     }
     
 }

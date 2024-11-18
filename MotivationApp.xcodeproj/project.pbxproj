@@ -7,22 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0D1D5E2CE9143400744CB8 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D542CE9143400744CB8 /* Login.swift */; };
+		3C0D1D5F2CE9143400744CB8 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D562CE9143400744CB8 /* QuoteView.swift */; };
+		3C0D1D602CE9143400744CB8 /* RecoverPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D572CE9143400744CB8 /* RecoverPassword.swift */; };
+		3C0D1D612CE9143400744CB8 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5C2CE9143400744CB8 /* Signup.swift */; };
+		3C0D1D622CE9143400744CB8 /* RenewPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D592CE9143400744CB8 /* RenewPassword.swift */; };
+		3C0D1D632CE9143400744CB8 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5B2CE9143400744CB8 /* SettingsRow.swift */; };
+		3C0D1D642CE9143400744CB8 /* Remainder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D582CE9143400744CB8 /* Remainder.swift */; };
+		3C0D1D652CE9143400744CB8 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5D2CE9143400744CB8 /* Welcome.swift */; };
+		3C0D1D662CE9143400744CB8 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D552CE9143400744CB8 /* Main.swift */; };
+		3C0D1D672CE9143400744CB8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5A2CE9143400744CB8 /* Settings.swift */; };
 		3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D72C778A360053029B /* SignupViewModel.swift */; };
-		3C56B6DA2C7E338E0053029B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D92C7E338E0053029B /* ForgotPasswordViewModel.swift */; };
+		3C56B6DA2C7E338E0053029B /* RecoverPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */; };
 		3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6DB2C8778620053029B /* NotificationService.swift */; };
 		3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3292C61068200C80538 /* MotivationAppApp.swift */; };
 		3C60B32C2C61068200C80538 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B32B2C61068200C80538 /* ContentView.swift */; };
 		3C60B32E2C61068400C80538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B32D2C61068400C80538 /* Assets.xcassets */; };
 		3C60B3312C61068400C80538 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3302C61068400C80538 /* Preview Assets.xcassets */; };
-		3C60B3392C6106B300C80538 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3382C6106B300C80538 /* Welcome.swift */; };
-		3C60B33B2C610D6F00C80538 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B33A2C610D6E00C80538 /* Signup.swift */; };
-		3C60B33D2C610D7700C80538 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B33C2C610D7700C80538 /* Login.swift */; };
 		3C60B3402C612AFD00C80538 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B33F2C612AFD00C80538 /* Validations.swift */; };
-		3C60B3422C63C5A600C80538 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3412C63C5A600C80538 /* ForgotPassword.swift */; };
-		3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3432C63C85E00C80538 /* Remainder.swift */; };
-		3C60B3462C63DECF00C80538 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3452C63DECF00C80538 /* Main.swift */; };
 		3C60B3492C6520E000C80538 /* DateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3482C6520E000C80538 /* DateType.swift */; };
-		3C60B3532C6E6D5500C80538 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3522C6E6D5500C80538 /* QuoteView.swift */; };
 		3C60B35D2C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3552C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf */; };
 		3C60B35E2C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3562C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf */; };
 		3C60B35F2C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B3572C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf */; };
@@ -32,29 +35,30 @@
 		3C60B3632C74FA5100C80538 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C60B35B2C74FA5100C80538 /* OFL.txt */; };
 		3C60B3662C762B4500C80538 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3652C762B4500C80538 /* Webservice.swift */; };
 		3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3672C76308C00C80538 /* LoginViewModel.swift */; };
-		3CD542C82C9C6F8F006BC896 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD542C72C9C6F8F006BC896 /* Settings.swift */; };
 		3CD542CA2C9C75B7006BC896 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */; };
-		3CD542CC2C9C76C2006BC896 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD542CB2C9C76C2006BC896 /* SettingsRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C0D1D542CE9143400744CB8 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		3C0D1D552CE9143400744CB8 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		3C0D1D562CE9143400744CB8 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		3C0D1D572CE9143400744CB8 /* RecoverPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPassword.swift; sourceTree = "<group>"; };
+		3C0D1D582CE9143400744CB8 /* Remainder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remainder.swift; sourceTree = "<group>"; };
+		3C0D1D592CE9143400744CB8 /* RenewPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewPassword.swift; sourceTree = "<group>"; };
+		3C0D1D5A2CE9143400744CB8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3C0D1D5B2CE9143400744CB8 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		3C0D1D5C2CE9143400744CB8 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		3C0D1D5D2CE9143400744CB8 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		3C56B6D72C778A360053029B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
-		3C56B6D92C7E338E0053029B /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewModel.swift; sourceTree = "<group>"; };
 		3C56B6DB2C8778620053029B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		3C60B3262C61068200C80538 /* MotivationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotivationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C60B3292C61068200C80538 /* MotivationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationAppApp.swift; sourceTree = "<group>"; };
 		3C60B32B2C61068200C80538 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3C60B32D2C61068400C80538 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C60B3302C61068400C80538 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3C60B3382C6106B300C80538 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
-		3C60B33A2C610D6E00C80538 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
-		3C60B33C2C610D7700C80538 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3C60B33F2C612AFD00C80538 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
-		3C60B3412C63C5A600C80538 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
-		3C60B3432C63C85E00C80538 /* Remainder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remainder.swift; sourceTree = "<group>"; };
-		3C60B3452C63DECF00C80538 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		3C60B3482C6520E000C80538 /* DateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateType.swift; sourceTree = "<group>"; };
-		3C60B3522C6E6D5500C80538 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		3C60B3552C74FA5100C80538 /* AveriaSerifLibre-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Bold.ttf"; sourceTree = "<group>"; };
 		3C60B3562C74FA5100C80538 /* AveriaSerifLibre-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-BoldItalic.ttf"; sourceTree = "<group>"; };
 		3C60B3572C74FA5100C80538 /* AveriaSerifLibre-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Italic.ttf"; sourceTree = "<group>"; };
@@ -62,12 +66,10 @@
 		3C60B3592C74FA5100C80538 /* AveriaSerifLibre-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-LightItalic.ttf"; sourceTree = "<group>"; };
 		3C60B35A2C74FA5100C80538 /* AveriaSerifLibre-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AveriaSerifLibre-Regular.ttf"; sourceTree = "<group>"; };
 		3C60B35B2C74FA5100C80538 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
-		3C60B3642C74FA9300C80538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3C60B3642C74FA9300C80538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C60B3652C762B4500C80538 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		3C60B3672C76308C00C80538 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		3CD542C72C9C6F8F006BC896 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		3CD542CB2C9C76C2006BC896 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +83,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C0D1D4D2CE9135400744CB8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C0D1D5D2CE9143400744CB8 /* Welcome.swift */,
+				3C0D1D542CE9143400744CB8 /* Login.swift */,
+				3C0D1D5C2CE9143400744CB8 /* Signup.swift */,
+				3C0D1D582CE9143400744CB8 /* Remainder.swift */,
+				3C0D1D552CE9143400744CB8 /* Main.swift */,
+				3C0D1D5A2CE9143400744CB8 /* Settings.swift */,
+				3C0D1D572CE9143400744CB8 /* RecoverPassword.swift */,
+				3C0D1D592CE9143400744CB8 /* RenewPassword.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C0D1D682CE9143C00744CB8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3C0D1D562CE9143400744CB8 /* QuoteView.swift */,
+				3C0D1D5B2CE9143400744CB8 /* SettingsRow.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		3C60B31D2C61068200C80538 = {
 			isa = PBXGroup;
 			children = (
 				3C60B3542C74FA4400C80538 /* Font */,
 				3C60B3282C61068200C80538 /* MotivationApp */,
-				3C60B3372C61069700C80538 /* VIew */,
+				3C0D1D682CE9143C00744CB8 /* Components */,
+				3C0D1D4D2CE9135400744CB8 /* View */,
+				3CD542DB2CBA7B01006BC896 /* Model-View */,
 				3C60B3472C6520A300C80538 /* Model */,
 				3C60B33E2C612AE800C80538 /* Helper */,
 				3C60B3272C61068200C80538 /* Products */,
@@ -121,22 +149,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		3C60B3372C61069700C80538 /* VIew */ = {
-			isa = PBXGroup;
-			children = (
-				3C60B3382C6106B300C80538 /* Welcome.swift */,
-				3C60B33A2C610D6E00C80538 /* Signup.swift */,
-				3C60B33C2C610D7700C80538 /* Login.swift */,
-				3C60B3412C63C5A600C80538 /* ForgotPassword.swift */,
-				3C60B3432C63C85E00C80538 /* Remainder.swift */,
-				3C60B3452C63DECF00C80538 /* Main.swift */,
-				3CD542C72C9C6F8F006BC896 /* Settings.swift */,
-				3C60B3522C6E6D5500C80538 /* QuoteView.swift */,
-				3CD542CB2C9C76C2006BC896 /* SettingsRow.swift */,
-			);
-			path = VIew;
-			sourceTree = "<group>";
-		};
 		3C60B33E2C612AE800C80538 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,11 +162,7 @@
 			children = (
 				3C60B3482C6520E000C80538 /* DateType.swift */,
 				3C60B3652C762B4500C80538 /* Webservice.swift */,
-				3C60B3672C76308C00C80538 /* LoginViewModel.swift */,
-				3C56B6D72C778A360053029B /* SignupViewModel.swift */,
-				3C56B6D92C7E338E0053029B /* ForgotPasswordViewModel.swift */,
 				3C56B6DB2C8778620053029B /* NotificationService.swift */,
-				3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +188,17 @@
 			);
 			path = Averia_Serif_Libre;
 			sourceTree = SOURCE_ROOT;
+		};
+		3CD542DB2CBA7B01006BC896 /* Model-View */ = {
+			isa = PBXGroup;
+			children = (
+				3C60B3672C76308C00C80538 /* LoginViewModel.swift */,
+				3C56B6D72C778A360053029B /* SignupViewModel.swift */,
+				3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */,
+				3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */,
+			);
+			path = "Model-View";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -258,23 +277,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C0D1D5E2CE9143400744CB8 /* Login.swift in Sources */,
+				3C0D1D5F2CE9143400744CB8 /* QuoteView.swift in Sources */,
+				3C0D1D602CE9143400744CB8 /* RecoverPassword.swift in Sources */,
+				3C0D1D612CE9143400744CB8 /* Signup.swift in Sources */,
+				3C0D1D622CE9143400744CB8 /* RenewPassword.swift in Sources */,
+				3C0D1D632CE9143400744CB8 /* SettingsRow.swift in Sources */,
+				3C0D1D642CE9143400744CB8 /* Remainder.swift in Sources */,
+				3C0D1D652CE9143400744CB8 /* Welcome.swift in Sources */,
+				3C0D1D662CE9143400744CB8 /* Main.swift in Sources */,
+				3C0D1D672CE9143400744CB8 /* Settings.swift in Sources */,
 				3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */,
-				3C60B3462C63DECF00C80538 /* Main.swift in Sources */,
-				3CD542CC2C9C76C2006BC896 /* SettingsRow.swift in Sources */,
 				3C60B32C2C61068200C80538 /* ContentView.swift in Sources */,
-				3C60B3442C63C85E00C80538 /* Remainder.swift in Sources */,
-				3C60B33D2C610D7700C80538 /* Login.swift in Sources */,
 				3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */,
-				3CD542C82C9C6F8F006BC896 /* Settings.swift in Sources */,
-				3C60B33B2C610D6F00C80538 /* Signup.swift in Sources */,
-				3C56B6DA2C7E338E0053029B /* ForgotPasswordViewModel.swift in Sources */,
+				3C56B6DA2C7E338E0053029B /* RecoverPasswordViewModel.swift in Sources */,
 				3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */,
-				3C60B3392C6106B300C80538 /* Welcome.swift in Sources */,
 				3C60B3662C762B4500C80538 /* Webservice.swift in Sources */,
-				3C60B3422C63C5A600C80538 /* ForgotPassword.swift in Sources */,
 				3C60B3402C612AFD00C80538 /* Validations.swift in Sources */,
 				3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */,
-				3C60B3532C6E6D5500C80538 /* QuoteView.swift in Sources */,
 				3C60B3492C6520E000C80538 /* DateType.swift in Sources */,
 				3CD542CA2C9C75B7006BC896 /* SettingsViewModel.swift in Sources */,
 			);
@@ -418,8 +438,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,8 +470,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -112,11 +112,12 @@ struct Remainder: View {
                 } label: {
                     Text("Save")
                         .font(.system(size: 20, weight: .semibold))
-                        .foregroundStyle(Color("Txtebackground"))
+                       
+
                 }
                 .padding(.vertical)
                 .frame(maxWidth: .infinity)
-                .background(Color("Logbuttondurk"))
+                .background(Color("txt"))
                 .cornerRadius(20)
                 .padding(.horizontal)
                 
