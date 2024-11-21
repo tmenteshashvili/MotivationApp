@@ -2,8 +2,7 @@
 import SwiftUI
 import UserNotifications
 
-struct Remainder: View {
-    @AppStorage("isDarkMode") private var isDark = false
+struct RemainderView: View {
     @State private var nextView = false
     @StateObject private var notificationService = NotificationService()
     @State private var isPermissionGranted = false
@@ -112,12 +111,13 @@ struct Remainder: View {
                 } label: {
                     Text("Save")
                         .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(.white)
                        
 
                 }
                 .padding(.vertical)
                 .frame(maxWidth: .infinity)
-                .background(Color("txt"))
+                .background(Color("SystemBlueLight"))
                 .cornerRadius(20)
                 .padding(.horizontal)
                 
@@ -125,7 +125,7 @@ struct Remainder: View {
             .padding()
         }
         .navigationDestination(isPresented: $nextView) {
-            Main()
+            MainView()
         }
         .onAppear {
             notificationService.requestNotificationPermission { granted in
@@ -135,9 +135,7 @@ struct Remainder: View {
                 }
             }
         }
-        
-        .environment(\.colorScheme, isDark ? .dark : .light)
-        
+                
     }
     func saveForNotifications() {
         UserDefaults.standard.set(howMany, forKey: "howMany")
@@ -148,7 +146,7 @@ struct Remainder: View {
 
 
 #Preview {
-    Remainder(
+    RemainderView(
         howMany: 3,
         startTime: Date(),
         endTime: Date().addingTimeInterval(3600),

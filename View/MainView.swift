@@ -2,8 +2,7 @@
 import SwiftUI
 import UserNotifications
 
-struct Main: View {
-    @AppStorage("isDarkMode") private var isDark = false
+struct MainView: View {
     @State var quotas = [Quote]()
     @State private var navigateToReminder = false
     @State private var showingSettingsSheet = false
@@ -48,7 +47,7 @@ struct Main: View {
                         .frame(width: 25, height: 25)
                         .padding()
                 }.sheet(isPresented: $showingSettingsSheet) {
-                    Settings()
+                    SettingView()
                         .edgesIgnoringSafeArea(.bottom)
                 }
                 .background(Color.gray.opacity(0.3))
@@ -68,13 +67,11 @@ struct Main: View {
             }
         }
         .padding()
-        .environment(\.colorScheme, isDark ? .dark : .light)
-
     }
 }
 
 
 #Preview {
-    Main()
+    MainView()
 }
 

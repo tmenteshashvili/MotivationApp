@@ -9,7 +9,7 @@ struct MotivationAppApp: App {
         WindowGroup {
             NavigationStack {
                 if loginVM.isAuthenticated {
-                    Login()
+                    LoginView()
                 } else {
                     Welcome()
                 }

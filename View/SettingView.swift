@@ -2,8 +2,7 @@
 
 import SwiftUI
 
-struct Settings: View {
-    @AppStorage("isDarkMode") private var isDark = false
+struct SettingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var settingsViewModel = SettingsViewModel()
     @EnvironmentObject private var loginVM: LoginViewModel
@@ -43,7 +42,7 @@ struct Settings: View {
                         self.settingsViewModel.showRemainder = true
                     }
                     .sheet(isPresented: $settingsViewModel.showRemainder) {
-                        Remainder(howMany: settingsViewModel.howMany, startTime: settingsViewModel.startTime, endTime:  settingsViewModel.endTime, quotes: [Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")])
+                        RemainderView(howMany: settingsViewModel.howMany, startTime: settingsViewModel.startTime, endTime:  settingsViewModel.endTime, quotes: [Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")])
                             .edgesIgnoringSafeArea(.bottom)
                     }
                     
@@ -54,12 +53,13 @@ struct Settings: View {
                     } label: {
                         Text("Sign out")
                             .font(.system(size: 20, weight: .semibold))
+                            .foregroundStyle(.white)
                             
                         
                     }
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
-                    .background(Color("txt"))
+                    .background(Color("SystemBlueLight"))
                     .cornerRadius(20)
                     .padding(.horizontal)
                     
@@ -74,7 +74,7 @@ struct Settings: View {
 
 
 #Preview {
-    Settings()
+    SettingView()
         .environmentObject(LoginViewModel())
 
 }

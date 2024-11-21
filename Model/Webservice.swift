@@ -200,7 +200,7 @@ class Webservice {
         
     // MARK: - Recover Password
     func recoverPassword(email: String, completion: @escaping(Result<String, AuthenticationError>) -> Void) {
-        let endpoint = "\(baseURL)/request-recover"
+        let endpoint = "\(baseURL)/request-recovery"
         
         guard let url = URL(string: endpoint) else {
             completion(.failure(.custom(errorMessage: "Invalid URL")))

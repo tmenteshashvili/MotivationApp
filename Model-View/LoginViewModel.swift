@@ -9,7 +9,6 @@ class LoginViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var message: String = ""
     
-    
     func login() {
         
         let defaults = UserDefaults.standard

@@ -76,9 +76,9 @@ struct Welcome: View {
             .navigationDestination(isPresented: $presentNextView) {
                 switch nextView {
                 case .login:
-                    Login()
+                    LoginView()
                 case .signup:
-                    Signup()
+                    SignupView()
                 }
             }
         }
@@ -86,8 +86,6 @@ struct Welcome: View {
 }
 
 #Preview {
-    Welcome()
-        .environmentObject(LoginViewModel())
-    
+    Welcome()    
 }
 

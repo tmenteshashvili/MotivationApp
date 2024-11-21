@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C0D1D5E2CE9143400744CB8 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D542CE9143400744CB8 /* Login.swift */; };
+		3C0D1D5E2CE9143400744CB8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D542CE9143400744CB8 /* LoginView.swift */; };
 		3C0D1D5F2CE9143400744CB8 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D562CE9143400744CB8 /* QuoteView.swift */; };
-		3C0D1D602CE9143400744CB8 /* RecoverPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D572CE9143400744CB8 /* RecoverPassword.swift */; };
-		3C0D1D612CE9143400744CB8 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5C2CE9143400744CB8 /* Signup.swift */; };
+		3C0D1D602CE9143400744CB8 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D572CE9143400744CB8 /* RecoverPasswordView.swift */; };
+		3C0D1D612CE9143400744CB8 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5C2CE9143400744CB8 /* SignupView.swift */; };
 		3C0D1D622CE9143400744CB8 /* RenewPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D592CE9143400744CB8 /* RenewPassword.swift */; };
 		3C0D1D632CE9143400744CB8 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5B2CE9143400744CB8 /* SettingsRow.swift */; };
-		3C0D1D642CE9143400744CB8 /* Remainder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D582CE9143400744CB8 /* Remainder.swift */; };
+		3C0D1D642CE9143400744CB8 /* RemainderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D582CE9143400744CB8 /* RemainderView.swift */; };
 		3C0D1D652CE9143400744CB8 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5D2CE9143400744CB8 /* Welcome.swift */; };
-		3C0D1D662CE9143400744CB8 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D552CE9143400744CB8 /* Main.swift */; };
-		3C0D1D672CE9143400744CB8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5A2CE9143400744CB8 /* Settings.swift */; };
+		3C0D1D662CE9143400744CB8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D552CE9143400744CB8 /* MainView.swift */; };
+		3C0D1D672CE9143400744CB8 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5A2CE9143400744CB8 /* SettingView.swift */; };
+		3C0D1D6E2CEE3D5500744CB8 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D6D2CEE3D5500744CB8 /* EmailTextField.swift */; };
+		3C0D1D702CEE3E6A00744CB8 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D6F2CEE3E6A00744CB8 /* PasswordTextField.swift */; };
 		3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D72C778A360053029B /* SignupViewModel.swift */; };
 		3C56B6DA2C7E338E0053029B /* RecoverPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */; };
 		3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6DB2C8778620053029B /* NotificationService.swift */; };
@@ -39,16 +41,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3C0D1D542CE9143400744CB8 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		3C0D1D552CE9143400744CB8 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		3C0D1D542CE9143400744CB8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3C0D1D552CE9143400744CB8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3C0D1D562CE9143400744CB8 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
-		3C0D1D572CE9143400744CB8 /* RecoverPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPassword.swift; sourceTree = "<group>"; };
-		3C0D1D582CE9143400744CB8 /* Remainder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remainder.swift; sourceTree = "<group>"; };
+		3C0D1D572CE9143400744CB8 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
+		3C0D1D582CE9143400744CB8 /* RemainderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainderView.swift; sourceTree = "<group>"; };
 		3C0D1D592CE9143400744CB8 /* RenewPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewPassword.swift; sourceTree = "<group>"; };
-		3C0D1D5A2CE9143400744CB8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3C0D1D5A2CE9143400744CB8 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		3C0D1D5B2CE9143400744CB8 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
-		3C0D1D5C2CE9143400744CB8 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		3C0D1D5C2CE9143400744CB8 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		3C0D1D5D2CE9143400744CB8 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
+		3C0D1D6D2CEE3D5500744CB8 /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
+		3C0D1D6F2CEE3E6A00744CB8 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3C56B6D72C778A360053029B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewModel.swift; sourceTree = "<group>"; };
 		3C56B6DB2C8778620053029B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -87,12 +91,12 @@
 			isa = PBXGroup;
 			children = (
 				3C0D1D5D2CE9143400744CB8 /* Welcome.swift */,
-				3C0D1D542CE9143400744CB8 /* Login.swift */,
-				3C0D1D5C2CE9143400744CB8 /* Signup.swift */,
-				3C0D1D582CE9143400744CB8 /* Remainder.swift */,
-				3C0D1D552CE9143400744CB8 /* Main.swift */,
-				3C0D1D5A2CE9143400744CB8 /* Settings.swift */,
-				3C0D1D572CE9143400744CB8 /* RecoverPassword.swift */,
+				3C0D1D542CE9143400744CB8 /* LoginView.swift */,
+				3C0D1D5C2CE9143400744CB8 /* SignupView.swift */,
+				3C0D1D582CE9143400744CB8 /* RemainderView.swift */,
+				3C0D1D552CE9143400744CB8 /* MainView.swift */,
+				3C0D1D5A2CE9143400744CB8 /* SettingView.swift */,
+				3C0D1D572CE9143400744CB8 /* RecoverPasswordView.swift */,
 				3C0D1D592CE9143400744CB8 /* RenewPassword.swift */,
 			);
 			path = View;
@@ -103,6 +107,8 @@
 			children = (
 				3C0D1D562CE9143400744CB8 /* QuoteView.swift */,
 				3C0D1D5B2CE9143400744CB8 /* SettingsRow.swift */,
+				3C0D1D6D2CEE3D5500744CB8 /* EmailTextField.swift */,
+				3C0D1D6F2CEE3E6A00744CB8 /* PasswordTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -277,16 +283,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C0D1D5E2CE9143400744CB8 /* Login.swift in Sources */,
+				3C0D1D5E2CE9143400744CB8 /* LoginView.swift in Sources */,
 				3C0D1D5F2CE9143400744CB8 /* QuoteView.swift in Sources */,
-				3C0D1D602CE9143400744CB8 /* RecoverPassword.swift in Sources */,
-				3C0D1D612CE9143400744CB8 /* Signup.swift in Sources */,
+				3C0D1D6E2CEE3D5500744CB8 /* EmailTextField.swift in Sources */,
+				3C0D1D602CE9143400744CB8 /* RecoverPasswordView.swift in Sources */,
+				3C0D1D612CE9143400744CB8 /* SignupView.swift in Sources */,
 				3C0D1D622CE9143400744CB8 /* RenewPassword.swift in Sources */,
 				3C0D1D632CE9143400744CB8 /* SettingsRow.swift in Sources */,
-				3C0D1D642CE9143400744CB8 /* Remainder.swift in Sources */,
+				3C0D1D642CE9143400744CB8 /* RemainderView.swift in Sources */,
 				3C0D1D652CE9143400744CB8 /* Welcome.swift in Sources */,
-				3C0D1D662CE9143400744CB8 /* Main.swift in Sources */,
-				3C0D1D672CE9143400744CB8 /* Settings.swift in Sources */,
+				3C0D1D662CE9143400744CB8 /* MainView.swift in Sources */,
+				3C0D1D672CE9143400744CB8 /* SettingView.swift in Sources */,
 				3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */,
 				3C60B32C2C61068200C80538 /* ContentView.swift in Sources */,
 				3C60B3682C76308C00C80538 /* LoginViewModel.swift in Sources */,
@@ -296,6 +303,7 @@
 				3C60B3402C612AFD00C80538 /* Validations.swift in Sources */,
 				3C60B32A2C61068200C80538 /* MotivationAppApp.swift in Sources */,
 				3C60B3492C6520E000C80538 /* DateType.swift in Sources */,
+				3C0D1D702CEE3E6A00744CB8 /* PasswordTextField.swift in Sources */,
 				3CD542CA2C9C75B7006BC896 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
