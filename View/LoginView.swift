@@ -1,16 +1,10 @@
 
 import SwiftUI
+import Combine
 
 enum NextStack {
     case forgotpassword
     case signup
-}
-
-enum FocusedField {
-    case email
-    case password
-    case full_name
-    case password_confirmation
 }
 
 struct LoginView: View {
@@ -19,25 +13,85 @@ struct LoginView: View {
     @State private var nextView: NextStack = .signup
     @State private var isValidEmail = true
     @State private var isValidPassword = true
-    
-    
-    @FocusState private var focusedField: FocusedField?
+    @State private var isPasswordVisible = false
+    @State private var isConfirmPasswordVisible = false
+
     @StateObject private var loginVM = LoginViewModel()
     
+    
     var body: some View {
-        
         NavigationStack {
-            Spacer()
             VStack(spacing: 15) {
                 Image("OnFloor1")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 370)
-
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
+                    .padding(.top)
                 
-                EmailTextField(title: "Email", errorText: "Your email in no valid")
-                PasswordTextField(errorText: "Your password in not valid")
+                TextField("Email", text: $loginVM.email)
+                    .padding()
+                    .background(Color("SystemBackgroundLightSecondary"))
+                    .cornerRadius(20)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color("SystemBlueLight"), lineWidth: 3)
+                    )
+                    .padding(.horizontal)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
                 
+                    .onChange(of: loginVM.email) { oldValue, newValue in
+                        isValidEmail = Validator.validateEmail(newValue)
+                    }
+                if !isValidEmail {
+                    HStack {
+                        Text("Your email in not valid")
+                            .foregroundStyle(.red)
+                            .padding(.leading)
+                        Spacer()
+                    }
+                }
+                
+                
+                HStack {
+                    Group {
+                        if isPasswordVisible {
+                            TextField("Password", text: $loginVM.password)
+                        } else {
+                            SecureField("Password", text: $loginVM.password)
+                        }
+                    }
+                    .textContentType(.newPassword)
+                    
+                    Button(action: {
+                        isPasswordVisible.toggle()
+                    }) {
+                        Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                            .foregroundColor(Color("SystemBlueLight"))
+                    }
+                    .padding(.trailing, 8)
+                }
+                .padding()
+                .background(Color("SystemBackgroundLightSecondary"))
+                .cornerRadius(20)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color("SystemBlueLight"), lineWidth: 3)
+                )
+                .padding(.horizontal)
+                .onChange(of: loginVM.password) { oldValue, newValue in
+                    isValidPassword = Validator.validatePassword(newValue)
+                }
+                
+                if !isValidPassword {
+                    HStack {
+                        Text("Your password in not valid")
+                            .foregroundStyle(.red)
+                            .padding(.leading)
+                        Spacer()
+                    }
+                    
+                }
                 HStack {
                     Spacer()
                     
@@ -49,10 +103,10 @@ struct LoginView: View {
                     .padding(.trailing)
                 }
             }
+            .padding(.top, 20)
             
-        
             Spacer()
-                        
+            
             Text(loginVM.message)
                 .foregroundColor(.red)
                 .padding()
@@ -61,15 +115,14 @@ struct LoginView: View {
             VStack(spacing: 12) {
                 Button {
                     loginVM.login()
-                    
                 } label: {
                     Text("Sign in")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical)
                     
                 }
-                .padding(.vertical)
-                .frame(maxWidth: .infinity)
                 .background(Color("SystemBlueLight"))
                 .cornerRadius(20)
                 .padding(.horizontal)
@@ -86,19 +139,19 @@ struct LoginView: View {
                     }
                 }
                 .padding(.horizontal)
-                .padding(.bottom)
             }
+            .padding(.bottom,8)
             
-                .navigationDestination(isPresented: $loginVM.isAuthenticated) {
-                    RemainderView(howMany: 3, startTime: Date(), endTime: Date().addingTimeInterval(3600), quotes: [
-                        Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
-                    ])
-                }
         }
-        
+        .navigationDestination(isPresented: $loginVM.isAuthenticated) {
+            RemainderView(howMany: 3, quotes: [
+                Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
+            ])
+        }
     }
     
 }
+
 #Preview {
     LoginView()
 }

@@ -1,7 +1,30 @@
 {
   "images" : [
     {
-      "filename" : "appstore.png",
+      "filename" : "appstore1024.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "appstore1024 1.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "tinted"
+        }
+      ],
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

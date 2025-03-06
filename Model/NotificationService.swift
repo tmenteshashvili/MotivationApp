@@ -32,9 +32,11 @@ class NotificationService: NSObject, ObservableObject {
         var arrayOfTimes: [Date] = []
         
         let timeInterval = endTime.timeIntervalSince(startTime)
-        let lengthOfChunk = timeInterval / Double(count)
+        let lengthOfChunk = timeInterval / Double(count - 1)
         
         var currentTime = startTime
+        arrayOfTimes.append(currentTime)
+        
         for _ in 0..<count {
             currentTime = currentTime.addingTimeInterval(lengthOfChunk)
             arrayOfTimes.append(currentTime)
@@ -43,8 +45,8 @@ class NotificationService: NSObject, ObservableObject {
         return arrayOfTimes
     }
     
+   func scheduleAllNotifications(from startTime: Date, to endTime: Date, count: Int, quotes: [Quote]) {
 
-    func scheduleAllNotifications(from startTime: Date, to endTime: Date, count: Int, quotes: [Quote]) {
         let arrayOfTimes = createArrayOfTimes(from: startTime, to: endTime, count: count)
         
         for (index, time) in arrayOfTimes.enumerated() {
@@ -61,7 +63,6 @@ class NotificationService: NSObject, ObservableObject {
             )
         }
     }
-    
  
     func addNotification(
         title: String,

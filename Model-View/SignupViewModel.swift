@@ -30,6 +30,8 @@ class SignupViewModel: ObservableObject {
                 switch result {
                 case .success(let token):
                     defaults.setValue(token, forKey: "JWT")
+                    defaults.setValue(self.email, forKey: "user_email")
+                    defaults.setValue(self.full_name, forKey: "user_fullname")
                     self.isAuthenticated = true
                     self.message = ""
                     

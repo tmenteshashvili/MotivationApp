@@ -18,8 +18,8 @@ class RecoverPasswordViewModel: ObservableObject {
          return emailPredicate.evaluate(with: email)
      }
      
-    func resetPassword() {
-        guard isValidEmail else {
+    func resetPassword(email: String) {
+        guard  isValidEmail else {
                    message = "Please enter a valid email address"
             isSuccess = false
                    return
@@ -45,3 +45,4 @@ class RecoverPasswordViewModel: ObservableObject {
         }
     }
 }
+

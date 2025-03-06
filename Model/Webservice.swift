@@ -26,6 +26,13 @@ struct RecoverPasswordRequestBody: Codable {
     let email: String
 }
 
+struct ResetPasswordRequestBody: Codable {
+    let email: String
+    let token: String
+    let password: String
+    let password_confirmation: String
+}
+
 struct LoginResponse: Codable {
     let token: String
     let user: User
@@ -196,11 +203,12 @@ class Webservice {
             }
         }.resume()
     }
-
-        
+    
+    
     // MARK: - Recover Password
     func recoverPassword(email: String, completion: @escaping(Result<String, AuthenticationError>) -> Void) {
         let endpoint = "\(baseURL)/request-recovery"
+        
         
         guard let url = URL(string: endpoint) else {
             completion(.failure(.custom(errorMessage: "Invalid URL")))
@@ -228,6 +236,7 @@ class Webservice {
                 completion(.failure(.custom(errorMessage: "Network error: \(error.localizedDescription)")))
                 return
             }
+            
             
             guard let data = data else {
                 completion(.failure(.custom(errorMessage: "No data received from server")))
@@ -261,5 +270,51 @@ class Webservice {
         }.resume()
     }
     
+    // MARK: - Reset Password
+    func resetPassword(email: String, token: String, password: String, password_confirmation: String, completion: @escaping(Result<String, AuthenticationError>) -> Void) {
+        let endpoint = "\(baseURL)/reset-password"
+        
+        guard let url = URL(string: endpoint) else {
+            completion(.failure(.custom(errorMessage: "Invalid URL")))
+            return
+        }
+        
+        let body = ResetPasswordRequestBody(email: email, token: token, password: password, password_confirmation: password_confirmation)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(body)
+        } catch {
+            completion(.failure(.custom(errorMessage: "Failed to encode request body")))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(.custom(errorMessage: "Network error: \(error.localizedDescription)")))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.custom(errorMessage: "No data received from server")))
+                return
+            }
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Reset Password Raw Response: \(responseString)")
+            }
+            
+            do {
+                let recoverResponse = try JSONDecoder().decode(RecoverResponse.self, from: data)
+                completion(.success(recoverResponse.message))
+            } catch {
+                completion(.failure(.custom(errorMessage: "Failed to decode server response: \(error.localizedDescription)")))
+            }
+        }.resume()
+    }
 }
     

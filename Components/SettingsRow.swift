@@ -7,10 +7,11 @@ struct SettingsRow: View {
     var imageName: String
     var title: String
     var action: (()->()) = {}
-
+    @Binding var showRemainder: Bool
+    
     var body: some View {
         Button(action: {
-          
+            showRemainder = true
         }) {
             HStack(spacing: 8) {
                 Image(systemName: imageName)

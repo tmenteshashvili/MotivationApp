@@ -7,11 +7,20 @@ struct RemainderView: View {
     @StateObject private var notificationService = NotificationService()
     @State private var isPermissionGranted = false
     @State var howMany: Int
-    @State var startTime: Date
-    @State var endTime: Date
-    
-    
-    
+    @State private var startTime: Date = {
+            var components = DateComponents()
+            components.hour = 12
+            components.minute = 0
+            return Calendar.current.date(from: components) ?? Date()
+        }()
+        @State private var endTime: Date = {
+            var components = DateComponents()
+            components.hour = 20
+            components.minute = 0
+            return Calendar.current.date(from: components) ?? Date()
+        }()
+
+
     var quotes: [Quote]
     
     var body: some View {
@@ -27,7 +36,7 @@ struct RemainderView: View {
                 Text("Every day at the same time you gonna receive\n a personal push notification with quotes you need.")
                     .multilineTextAlignment(.center)
                     .font(.system(size: 15))
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
                 
                 Spacer()
                 
@@ -45,7 +54,7 @@ struct RemainderView: View {
                         }, label: {
                             Image(systemName: "minus.square")
                                 .padding()
-                                .foregroundColor(Color.black)
+                                .foregroundColor(.secondary)
                         })
                         
                         Text("\(howMany)X")
@@ -59,14 +68,14 @@ struct RemainderView: View {
                         }, label: {
                             Image(systemName: "plus.square")
                                 .padding()
-                                .foregroundColor(Color.black)
+                                .foregroundColor(.secondary)
                             
                         })
                     }
                 }
                 .padding(.vertical)
                 
-                Divider().frame(width: 350).background(Color("Logbuttondurk"))
+                Divider().frame(width: 380).background(Color("SystemGrayLight"))
                 
                 HStack {
                     DatePicker("Start at:", selection: $startTime, displayedComponents: .hourAndMinute)
@@ -76,7 +85,7 @@ struct RemainderView: View {
                 }
                 .padding(.vertical)
                 
-                Divider().frame(width: 350).background(Color("Logbuttondurk"))
+                Divider().frame(width: 380).background(Color("SystemGrayLight"))
                 
                 HStack {
                     DatePicker("End at:", selection: $endTime, displayedComponents: .hourAndMinute)
@@ -86,13 +95,17 @@ struct RemainderView: View {
                 }
                 .padding(.vertical)
                 
-                Divider().frame(width: 350).background(Color("Logbuttondurk"))
+                Divider().frame(width: 380).background(Color("SystemGrayLight"))
                 Spacer()
                 
+            }
+            .padding()
+            
+            VStack {
                 Button {
                     Task {
                         do {
-                            let quotes = try await fetchQuotas()
+                            let quotes = try await fetchQuotes()
                             
                             notificationService.scheduleAllNotifications(
                                 from: startTime,
@@ -112,17 +125,14 @@ struct RemainderView: View {
                     Text("Save")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundStyle(.white)
-                       
-
+                    
                 }
                 .padding(.vertical)
                 .frame(maxWidth: .infinity)
                 .background(Color("SystemBlueLight"))
                 .cornerRadius(20)
                 .padding(.horizontal)
-                
             }
-            .padding()
         }
         .navigationDestination(isPresented: $nextView) {
             MainView()
@@ -135,7 +145,7 @@ struct RemainderView: View {
                 }
             }
         }
-                
+        
     }
     func saveForNotifications() {
         UserDefaults.standard.set(howMany, forKey: "howMany")
@@ -147,9 +157,7 @@ struct RemainderView: View {
 
 #Preview {
     RemainderView(
-        howMany: 3,
-        startTime: Date(),
-        endTime: Date().addingTimeInterval(3600),
+        howMany: 5,
         quotes: [Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")])
     
 }

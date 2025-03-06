@@ -11,7 +11,7 @@
 			<string>com.takomenteshashvili.MotivationApp</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>motivation-app</string>
+				<string>motivationapp</string>
 			</array>
 		</dict>
 	</array>

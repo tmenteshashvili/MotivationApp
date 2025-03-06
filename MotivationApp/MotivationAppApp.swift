@@ -3,16 +3,13 @@ import SwiftUI
 
 @main
 struct MotivationAppApp: App {
-    @StateObject private var loginVM = LoginViewModel()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var loginVM = LoginViewModel()
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if loginVM.isAuthenticated {
-                    LoginView()
-                } else {
-                    Welcome()
-                }
+                ContentView()
             }
             .environmentObject(loginVM)
         }

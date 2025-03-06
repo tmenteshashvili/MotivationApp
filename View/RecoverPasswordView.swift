@@ -3,7 +3,6 @@ import SwiftUI
 struct RecoverPasswordView: View {
     @StateObject private var viewModel = RecoverPasswordViewModel()
     @Environment(\.dismiss) private var dismiss
-    
     var body: some View {
         
         NavigationStack {
@@ -38,24 +37,9 @@ struct RecoverPasswordView: View {
             .padding(.horizontal)
             .padding(.top, 80)
             
-//            Spacer()
-            
-//            if viewModel.isLoading {
-//                ProgressView()
-//                    .progressViewStyle(CircularProgressViewStyle())
-//            }
-//            
-//            if !viewModel.message.isEmpty {
-//                Text(viewModel.message)
-//                    .foregroundColor(viewModel.isSuccess ? .green : .red)
-//                    .font(.system(size: 14))
-//                    .multilineTextAlignment(.center)
-//                    .padding(.horizontal)
-//            }
-//
             Spacer()
                 Button {
-                    viewModel.resetPassword()
+                    viewModel.resetPassword(email: viewModel.email)
                 } label: {
                     Text("Submit")
                         .font(.system(size: 20, weight: .semibold))
@@ -73,7 +57,7 @@ struct RecoverPasswordView: View {
             
             if !viewModel.message.isEmpty {
                 Text(viewModel.message)
-                    .foregroundStyle(.red)
+                    .foregroundStyle(.green)
                     .padding(.top)
             }
             
@@ -81,9 +65,7 @@ struct RecoverPasswordView: View {
     }
     
 }
-
-
-
 #Preview {
     RecoverPasswordView()
 }
+

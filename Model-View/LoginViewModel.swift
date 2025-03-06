@@ -1,6 +1,6 @@
-
+import UIKit
+import SwiftUI
 import Foundation
-
 
 class LoginViewModel: ObservableObject {
     @Published var email: String = ""
@@ -10,7 +10,7 @@ class LoginViewModel: ObservableObject {
     @Published var message: String = ""
     
     func login() {
-        
+ 
         let defaults = UserDefaults.standard
         
         Webservice().login(email: email, password: password, client: "ios") { result in
@@ -39,17 +39,24 @@ class LoginViewModel: ObservableObject {
             }
         }
     }
-    
     func signout() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "JWT")
+
         DispatchQueue.main.async {
             self.isAuthenticated = false
             self.email = ""
             self.password = ""
             self.message = ""
+
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = scene.windows.first {
+                window.rootViewController = UIHostingController(rootView: Welcome().environmentObject(self))
+                window.makeKeyAndVisible()
+            }
         }
     }
-}
+ }
+
 
 

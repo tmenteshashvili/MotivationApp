@@ -39,38 +39,21 @@ struct Welcome: View {
                     .foregroundStyle(.primary)
                 
                 Spacer()
-                
-                HStack(spacing: 15) {
-                    Button {
-                        nextView = .signup
-                        presentNextView.toggle()
-                    } label: {
-                        Text("SIGNUP")
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundStyle(.white)
-                        
-                        
-                    }
-                    .frame(width: 160, height: 60)
-                    .background(Color("SystemBlueLight"))
-                    .cornerRadius(20)
-                    
+                                    
                     Button {
                         nextView = .login
                         presentNextView.toggle()
                     } label: {
-                        Text("LOGIN")
+                        Text("Get Started")
                             .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.white)
                         
                     }
-                    .frame(width: 160, height: 60)
+                    .padding(.vertical,15)
+                    .frame(maxWidth: .infinity)
                     .background(Color("SystemBlueLight"))
                     .cornerRadius(20)
-                    
-                }
-                .padding(.bottom, 20)
-                
+                    .foregroundColor(.white)
+
             }
             .padding()
             .navigationDestination(isPresented: $presentNextView) {
