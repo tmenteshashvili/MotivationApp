@@ -26,9 +26,8 @@ struct SettingView: View {
             ScrollView {
                 profileHeader
                 
-                
                 accountManagementSection
-
+                
                 VStack(alignment: .leading, spacing: 12) {
                     SettingsRow(imageName: "bell", title: "Notifications", showRemainder: $settingsViewModel.showRemainder)
                         .sheet(isPresented: $settingsViewModel.showRemainder) {
@@ -44,11 +43,14 @@ struct SettingView: View {
                     .fill(Color(.secondarySystemBackground)))
                 .padding(.top, 6)
                 .padding(.horizontal)
-
+                
             }
         }
         .sheet(isPresented: $showingEditProfile) {
             EditProfileView(profileViewModel: profileViewModel)
+        }
+        .onAppear {
+            profileViewModel.fetchUserProfile()
         }
     }
     
@@ -98,64 +100,64 @@ struct SettingView: View {
                     .foregroundColor(.gray)
             )
     }
-
+    
     private var accountManagementSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-               Text("Account Management")
-                   .font(.headline)
-                   .foregroundColor(.gray)
-                   .padding(.horizontal)
-
-               NavigationLink(destination: EditProfileView(profileViewModel: profileViewModel)) {
-                   HStack {
-                       Image(systemName: "person.circle")
-                           .foregroundColor(.primary)
-                       Text("Edit Profile")
-                           .foregroundStyle(.primary)
-                       Spacer()
-                       Image(systemName: "chevron.right")
-                           .font(.system(size: 16, weight: .regular, design: .rounded))
-                           .foregroundColor(.primary)
-                   }
-                   .padding()
-               }
-               .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
-                   .fill(Color(.secondarySystemBackground)))
-               .padding(.top, 6)
-               .padding(.horizontal)
-
+            Text("Account Management")
+                .font(.headline)
+                .foregroundColor(.gray)
+                .padding(.horizontal)
+            
+            NavigationLink(destination: EditProfileView(profileViewModel: profileViewModel)) {
+                HStack {
+                    Image(systemName: "person.circle")
+                        .foregroundColor(.primary)
+                    Text("Edit Profile")
+                        .foregroundStyle(.primary)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        .foregroundColor(.primary)
+                }
+                .padding()
+            }
+            .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(Color(.secondarySystemBackground)))
+            .padding(.top, 6)
+            .padding(.horizontal)
+            
             Button(action: { loginViewModel.signout() }) {
-                   HStack {
-                       Image(systemName: "arrow.backward.circle")
-                           .foregroundColor(.primary)
-                       Text("Sing Out")
-                           .foregroundColor(.primary)
-                       Spacer()
-                   }
-                   .padding()
-               }
-               .background(Color(.secondarySystemBackground))
-               .cornerRadius(10)
-               .padding(.horizontal)
-           }
-           .padding(.top, 10)
+                HStack {
+                    Image(systemName: "arrow.backward.circle")
+                        .foregroundColor(.primary)
+                    Text("Sing Out")
+                        .foregroundColor(.primary)
+                    Spacer()
+                }
+                .padding()
+            }
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(10)
+            .padding(.horizontal)
+        }
+        .padding(.top, 10)
     }
     
     
     struct ImagePicker: UIViewControllerRepresentable {
         @Binding var image: UIImage?
-
+        
         func makeCoordinator() -> Coordinator {
             Coordinator(self)
         }
-
+        
         class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
             let parent: ImagePicker
-
+            
             init(_ parent: ImagePicker) {
                 self.parent = parent
             }
-
+            
             func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
                 if let selectedImage = info[.originalImage] as? UIImage {
                     parent.image = selectedImage
@@ -163,14 +165,14 @@ struct SettingView: View {
                 picker.dismiss(animated: true)
             }
         }
-
+        
         func makeUIViewController(context: Context) -> UIImagePickerController {
             let picker = UIImagePickerController()
             picker.delegate = context.coordinator
             picker.sourceType = .photoLibrary
             return picker
         }
-
+        
         func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
     }
 }

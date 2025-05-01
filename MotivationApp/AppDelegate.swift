@@ -6,11 +6,29 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         print("Received URL: \(url.absoluteString)")
         
-           return true
+        return true
     }
-
+    
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         print("Handling URL: \(url.absoluteString)")
         return true
     }
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        checkAuthStatus()
+        return true
+    }
+}
+
+private func checkAuthStatus() {
+    let defaults = UserDefaults.standard
+    if let token = defaults.string(forKey: "JWT"), !token.isEmpty {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .userAuthenticated, object: nil)
+        }
+    }
+}
+
+
+extension Notification.Name {
+    static let userAuthenticated = Notification.Name("userAuthenticated")
 }

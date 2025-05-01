@@ -39,21 +39,21 @@ struct Welcome: View {
                     .foregroundStyle(.primary)
                 
                 Spacer()
-                                    
-                    Button {
-                        nextView = .login
-                        presentNextView.toggle()
-                    } label: {
-                        Text("Get Started")
-                            .font(.system(size: 20, weight: .semibold))
-                        
-                    }
-                    .padding(.vertical,15)
-                    .frame(maxWidth: .infinity)
-                    .background(Color("SystemBlueLight"))
-                    .cornerRadius(20)
-                    .foregroundColor(.white)
-
+                
+                Button {
+                    nextView = .login
+                    presentNextView.toggle()
+                } label: {
+                    Text("Get Started")
+                        .font(.system(size: 20, weight: .semibold))
+                    
+                }
+                .padding(.vertical,15)
+                .frame(maxWidth: .infinity)
+                .background(Color("SystemBlueLight"))
+                .cornerRadius(20)
+                .foregroundColor(.white)
+                
             }
             .padding()
             .navigationDestination(isPresented: $presentNextView) {
@@ -69,6 +69,6 @@ struct Welcome: View {
 }
 
 #Preview {
-    Welcome()    
+    Welcome()
 }
 

@@ -8,6 +8,8 @@ enum NextStack {
 }
 
 struct LoginView: View {
+    @EnvironmentObject private var loginVM: LoginViewModel
+    
     @State private var message: String = ""
     @State private var presentNextView = false
     @State private var nextView: NextStack = .signup
@@ -15,8 +17,7 @@ struct LoginView: View {
     @State private var isValidPassword = true
     @State private var isPasswordVisible = false
     @State private var isConfirmPasswordVisible = false
-
-    @StateObject private var loginVM = LoginViewModel()
+    @State private var showSuccessAlert = false
     
     
     var body: some View {
@@ -39,7 +40,6 @@ struct LoginView: View {
                     .padding(.horizontal)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
-                
                     .onChange(of: loginVM.email) { oldValue, newValue in
                         isValidEmail = Validator.validateEmail(newValue)
                     }
@@ -59,6 +59,9 @@ struct LoginView: View {
                             TextField("Password", text: $loginVM.password)
                         } else {
                             SecureField("Password", text: $loginVM.password)
+                                .textContentType(.password)
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
                         }
                     }
                     .textContentType(.newPassword)
@@ -102,19 +105,29 @@ struct LoginView: View {
                     }
                     .padding(.trailing)
                 }
-            }
-            .padding(.top, 20)
-            
-            Spacer()
-            
-            Text(loginVM.message)
-                .foregroundColor(.red)
-                .padding()
-            
-            
-            VStack(spacing: 12) {
+                
+                .padding(.top, 20)
+                
+                Spacer()
+                
+                Text(loginVM.message)
+                    .foregroundColor(.red)
+                    .padding()
+                
+                
                 Button {
                     loginVM.login()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        if loginVM.isAuthenticated {
+                            showSuccessAlert = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                showSuccessAlert = false
+                            }
+                            
+                        }
+                    }
+                    
                 } label: {
                     Text("Sign in")
                         .font(.system(size: 20, weight: .semibold))
@@ -123,10 +136,15 @@ struct LoginView: View {
                         .padding(.vertical)
                     
                 }
+                .buttonStyle(PlainButtonStyle())
                 .background(Color("SystemBlueLight"))
                 .cornerRadius(20)
                 .padding(.horizontal)
-                
+                .alert("Login Successful", isPresented: $showSuccessAlert) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text("Welcome back!")
+                }
                 
                 NavigationLink(destination: SignupView()) {
                     HStack {
@@ -139,19 +157,17 @@ struct LoginView: View {
                     }
                 }
                 .padding(.horizontal)
+               
             }
-            .padding(.bottom,8)
-            
-        }
-        .navigationDestination(isPresented: $loginVM.isAuthenticated) {
-            RemainderView(howMany: 3, quotes: [
-                Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
-            ])
+            .navigationDestination(isPresented: $loginVM.isAuthenticated) {
+                RemainderView(howMany: 3, quotes: [
+                    Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
+                ])
+            }
+            .navigationBarBackButtonHidden(true)
         }
     }
-    
 }
-
 #Preview {
     LoginView()
 }

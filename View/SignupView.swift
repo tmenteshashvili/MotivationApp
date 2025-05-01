@@ -13,6 +13,7 @@ struct SignupView: View {
     @State private var isConfirmPasswordValid = true
     @State private var isPasswordVisible = false
     @State private var isConfirmPasswordVisible = false
+    @State private var showSuccessAlert = false
     @State private var passwordRequirements = [
         PasswordRequirement(text: "At least 1 number", isMet: false),
         PasswordRequirement(text: "At least 8 characters", isMet: false),
@@ -20,7 +21,8 @@ struct SignupView: View {
         PasswordRequirement(text: "At least 1 special character", isMet: false)
     ]
     
-    @StateObject private var SignupVM = SignupViewModel()
+    @StateObject private var signupVM = SignupViewModel()
+    @EnvironmentObject private var loginVM: LoginViewModel
     
     var body: some View {
         NavigationStack {
@@ -31,7 +33,7 @@ struct SignupView: View {
                     .scaledToFit()
                     .frame(width: 300)
                 
-                TextField("Email", text: $SignupVM.email)
+                TextField("Email", text: $signupVM.email)
                     .padding()
                     .background(Color("SystemBackgroundLightSecondary"))
                     .cornerRadius(20)
@@ -41,7 +43,7 @@ struct SignupView: View {
                     )
                     .padding(.horizontal)
                 
-                TextField("Fullname", text: $SignupVM.full_name)
+                TextField("Fullname", text: $signupVM.full_name)
                     .padding()
                     .background(Color("SystemBackgroundLightSecondary"))
                     .cornerRadius(20)
@@ -55,9 +57,10 @@ struct SignupView: View {
                 HStack {
                     Group {
                         if isPasswordVisible {
-                            TextField("Password", text: $SignupVM.password)
+                            TextField("Password", text: $signupVM.password)
                         } else {
-                            SecureField("Password", text: $SignupVM.password)
+                            SecureField("Password", text: $signupVM.password)
+                            
                         }
                     }
                     .textContentType(.newPassword)
@@ -78,12 +81,12 @@ struct SignupView: View {
                         .stroke(Color("SystemBlueLight"), lineWidth: 3)
                 )
                 .padding(.horizontal)
-                .onChange(of: SignupVM.password) { oldValue, newValue in
+                .onChange(of: signupVM.password) { oldValue, newValue in
                     validatePassword(newValue)
                     showPasswordRequirements = !passwordRequirements.allSatisfy { $0.isMet }
                 }
                 
-                if showPasswordRequirements && !SignupVM.password.isEmpty {
+                if showPasswordRequirements && !signupVM.password.isEmpty {
                     VStack(alignment: .leading) {
                         ForEach(passwordRequirements) { requirement in
                             HStack {
@@ -102,9 +105,9 @@ struct SignupView: View {
                 HStack {
                     Group {
                         if isConfirmPasswordVisible {
-                            TextField("Confirm password", text: $SignupVM.password_confirmation)
+                            TextField("Confirm password", text: $signupVM.password_confirmation)
                         } else {
-                            SecureField("Confirm password", text: $SignupVM.password_confirmation)
+                            SecureField("Confirm password", text: $signupVM.password_confirmation)
                         }
                     }
                     .textContentType(.newPassword)
@@ -125,11 +128,11 @@ struct SignupView: View {
                         .stroke(Color("SystemBlueLight"), lineWidth: 3)
                 )
                 .padding(.horizontal)
-                .onChange(of: SignupVM.password_confirmation) { oldValue, newValue in
+                .onChange(of: signupVM.password_confirmation) { oldValue, newValue in
                     validatePasswordConfirmation(newValue)
                 }
                 
-                if !isConfirmPasswordValid && !SignupVM.password_confirmation.isEmpty {
+                if !isConfirmPasswordValid && !signupVM.password_confirmation.isEmpty {
                     HStack {
                         Text("Passwords do not match")
                             .foregroundStyle(.red)
@@ -141,34 +144,45 @@ struct SignupView: View {
                 
                 Spacer()
                 
-                VStack {
-                    Button {
-                        if isValidPassword && isConfirmPasswordValid {
-                            SignupVM.signup()
+                Button {
+                    if isValidPassword && isConfirmPasswordValid {
+                        signupVM.signup()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if signupVM.isAuthenticated {
+                                showSuccessAlert = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    showSuccessAlert = false
+                                }
+                            }
                         }
-                    } label: {
-                        Text("Sign up")
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundStyle(.white)
-                        
-                        
                     }
-                    .padding(.vertical)
-                    .frame(maxWidth: .infinity)
-                    .background(Color("SystemBlueLight"))
-                    .cornerRadius(20)
-                    .padding(.horizontal)
+                    
+                } label: {
+                    Text("Sign up")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(.white)
                     
                     
                 }
+                .padding(.vertical)
+                .frame(maxWidth: .infinity)
+                .background(Color("SystemBlueLight"))
+                .cornerRadius(20)
+                .padding(.horizontal)
+                .alert("Registration Successful", isPresented: $showSuccessAlert) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text("Your account has been created successfully!")
+                }
                 
                 
-                .navigationDestination(isPresented: $SignupVM.isAuthenticated) {
+                .navigationTitle("Create Account")
+                .navigationDestination(isPresented: $signupVM.isAuthenticated) {
                     RemainderView(howMany: 3, quotes: [
                         Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
                     ])
                 }
-                
+                .navigationBarBackButtonHidden(true)
             }
         }
         
@@ -185,7 +199,7 @@ struct SignupView: View {
     
     
     private func validatePasswordConfirmation(_ confirmation: String) {
-        isConfirmPasswordValid = !confirmation.isEmpty && confirmation == SignupVM.password
+        isConfirmPasswordValid = !confirmation.isEmpty && confirmation == signupVM.password
     }
 }
 

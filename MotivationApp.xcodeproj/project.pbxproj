@@ -111,6 +111,7 @@
 				3C0D1D7D2CF21A6900744CB8 /* NotificationSettingsView.swift */,
 				3C0D1D7F2CF4E1AC00744CB8 /* FavoritesView.swift */,
 				3CD88A752D01B96300299430 /* QuoteView.swift */,
+				3C6C8A132D5E7F2800BB9A05 /* EditProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,7 +217,6 @@
 				3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */,
 				3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */,
 				3C6C8A112D5E7EEA00BB9A05 /* ProfileViewModel.swift */,
-				3C6C8A132D5E7F2800BB9A05 /* EditProfileView.swift */,
 			);
 			path = "Model-View";
 			sourceTree = "<group>";
@@ -466,9 +466,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MotivationApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -497,9 +499,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MotivationApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;

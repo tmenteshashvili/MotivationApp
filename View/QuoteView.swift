@@ -9,9 +9,9 @@ struct QuoteView: View {
     @State private var selectedQuote: Quote?
     @State private var isSharePresented = false
     @State private var showingFavoritesView = false
+    @AppStorage("firstLaunch") private var isFirstLaunch = true
     
     var body: some View {
-        NavigationStack{
             ZStack {
                 Image("Hands")
                     .offset(y: 210)
@@ -46,18 +46,26 @@ struct QuoteView: View {
             .navigationDestination(isPresented: $showingFavoritesView) {
                 FavoritesView()
             }
-        }
         .task {
             do {
-                quotas = try await fetchQuotes()
-                print("Quotes fetched: \(quotas)")
-                navigateToReminder = true
+                if isFirstLaunch {
+                    
+                    quotas = try await fetchQuotes()
+                    isFirstLaunch = false
+                } else {
+                  
+                    quotas = try await fetchQuotes()
+                }
             } catch {
                 print("Failed to fetch quotes: \(error)")
             }
         }
+        .sheet(isPresented: $showingFavoritesView) {
+            FavoritesView()
+        }
     }
 }
+
 
 
 #Preview {

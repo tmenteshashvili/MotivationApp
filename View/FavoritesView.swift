@@ -6,7 +6,6 @@ struct FavoritesView: View {
     @State private var savedQuotes: [String] = []
     
     var body: some View {
-        NavigationStack {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Text("Favorite Quotes")
@@ -42,7 +41,6 @@ struct FavoritesView: View {
                     }
                 }
             }
-        }
         .onAppear {
             loadSavedQuotes()
         }
@@ -60,10 +58,7 @@ struct FavoritesView: View {
         }
         
         private func removeRows(at offsets: IndexSet) {
-            // Remove from the UI
             savedQuotes.remove(atOffsets: offsets)
-            
-            // Update UserDefaults
             UserDefaults.standard.set(savedQuotes, forKey: "SavedQuotes")
         }
     }

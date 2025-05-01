@@ -8,10 +8,8 @@ struct MotivationAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                ContentView()
-            }
-            .environmentObject(loginVM)
+            ContentView()
+                .environmentObject(loginVM)
         }
     }
 }

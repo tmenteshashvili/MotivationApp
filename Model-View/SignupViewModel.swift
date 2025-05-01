@@ -9,19 +9,20 @@ class SignupViewModel: ObservableObject {
     @Published  var password_confirmation: String = ""
     @Published var isAuthenticated: Bool = false
     @Published var message: String = ""
+    @Published var showSuccessAlert: Bool = false
     
     
     func signup() {
         
         guard !email.isEmpty, !full_name.isEmpty, !password.isEmpty, !password_confirmation.isEmpty else {
-                    message = "All fields are required"
-                    return
-                }
-                
-                guard password == password_confirmation else {
-                    message = "Passwords do not match"
-                    return
-                }
+            message = "All fields are required"
+            return
+        }
+        
+        guard password == password_confirmation else {
+            message = "Passwords do not match"
+            return
+        }
         
         let defaults = UserDefaults.standard
         
@@ -32,8 +33,14 @@ class SignupViewModel: ObservableObject {
                     defaults.setValue(token, forKey: "JWT")
                     defaults.setValue(self.email, forKey: "user_email")
                     defaults.setValue(self.full_name, forKey: "user_fullname")
-                    self.isAuthenticated = true
-                    self.message = ""
+                    defaults.setValue(true, forKey: "justAuthenticated")
+                    
+                    self.showSuccessAlert = true
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.isAuthenticated = true
+                        self.message = ""
+                    }
                     
                 case .failure(let error):
                     self.isAuthenticated = false
@@ -51,5 +58,5 @@ class SignupViewModel: ObservableObject {
             }
         }
     }
+    
 }
-
