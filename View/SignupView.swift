@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct PasswordRequirement: Identifiable {
@@ -8,6 +7,7 @@ struct PasswordRequirement: Identifiable {
 }
 
 struct SignupView: View {
+    var quotes: [QuoteService.Quote]
     @State private var isValidPassword = false
     @State private var showPasswordRequirements = true
     @State private var isConfirmPasswordValid = true
@@ -23,6 +23,8 @@ struct SignupView: View {
     
     @StateObject private var signupVM = SignupViewModel()
     @EnvironmentObject private var loginVM: LoginViewModel
+    
+    @State private var isLoading = false
     
     var body: some View {
         NavigationStack {
@@ -140,7 +142,12 @@ struct SignupView: View {
                         Spacer()
                     }
                 }
-                
+                if !signupVM.message.isEmpty {
+                    Text(signupVM.message)
+                        .foregroundStyle(.red)
+                        .padding(.horizontal)
+                        .multilineTextAlignment(.center)
+                }
                 
                 Spacer()
                 
@@ -179,10 +186,16 @@ struct SignupView: View {
                 .navigationTitle("Create Account")
                 .navigationDestination(isPresented: $signupVM.isAuthenticated) {
                     RemainderView(howMany: 3, quotes: [
-                        Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
+                        QuoteService.Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
                     ])
                 }
                 .navigationBarBackButtonHidden(true)
+                
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(1.5)
+                }
             }
         }
         
@@ -204,7 +217,47 @@ struct SignupView: View {
 }
 
 #Preview {
-    SignupView()
+    SignupView(quotes: [
+        QuoteService.Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
+    ])
+}
+
+struct FormField: View {
+    let title: String
+    @Binding var text: String
+    var isSecure: Bool = false
+    var showPassword: Binding<Bool>? = nil
+    
+    var body: some View {
+        HStack {
+            Group {
+                if isSecure {
+                    if showPassword?.wrappedValue ?? false {
+                        TextField(title, text: $text)
+                    } else {
+                        SecureField(title, text: $text)
+                    }
+                } else {
+                    TextField(title, text: $text)
+                }
+            }
+            .textContentType(isSecure ? .password : .none)
+            
+            if isSecure, let showPassword = showPassword {
+                Button(action: { showPassword.wrappedValue.toggle() }) {
+                    Image(systemName: showPassword.wrappedValue ? "eye.slash.fill" : "eye.fill")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.blue, lineWidth: 1)
+        )
+    }
 }
 
 

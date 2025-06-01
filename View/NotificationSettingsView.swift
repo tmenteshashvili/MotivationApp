@@ -1,6 +1,6 @@
 
-
 import SwiftUI
+import UserNotifications
 
 struct NotificationSettingsView: View {
     @Environment(\.dismiss) private var dismiss
@@ -10,38 +10,41 @@ struct NotificationSettingsView: View {
     @ObservedObject var notificationService: NotificationService
     @State private var showingAlert = false
     @State private var alertType: AlertType = .success
-    
+    @State private var isLoading = false
+    @StateObject private var quoteViewModel = QuoteViewModel()
+    var quotes: [QuoteService.Quote]
+
     enum AlertType {
-        case success, error, permission
+        case success, error, permission, disabled
         
         var title: String {
             switch self {
-            case .success: return "Notifications Scheduled!"
-            case .error: return "Error"
-            case .permission: return "Notifications Permission Required"
+            case .success: return "Notifications Updated!"
+            case .error: return "Invalid Time Range"
+            case .permission: return "Permission Required"
+            case .disabled: return "Notifications Disabled"
             }
         }
         
         var message: String {
             switch self {
-            case .success: return "Your motivational quotes will be delivered at the specified times."
-            case .error: return "Start time must be before end time."
+            case .success: return "Your motivational quotes will be delivered at the scheduled times daily."
+            case .error: return "End time must be after start time."
             case .permission: return "Please enable notifications in Settings to receive motivational quotes."
+            case .disabled: return "All notifications have been cancelled."
             }
         }
     }
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                
                 Text("Notifications")
                     .font(.system(size: 28, weight: .heavy, design: .rounded))
                     .padding(.horizontal)
-
                 
-                VStack {
-                    
+                VStack(spacing: 0) {
                     HStack {
                         Text("How many")
                             .font(.system(size: 18, weight: .regular, design: .rounded))
@@ -50,58 +53,63 @@ struct NotificationSettingsView: View {
                         
                         HStack {
                             Button(action: {
-                                if howMany != 1 {
+                                if howMany > 1 {
                                     howMany -= 1
                                 }
-                            }, label: {
+                            }) {
                                 Image(systemName: "minus.square")
                                     .padding()
                                     .foregroundColor(.secondary)
-                            })
+                            }
                             
                             Text("\(howMany)X")
-                                .font(.system(size: 16, weight: .regular, design: .rounded))
-                            
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                .frame(minWidth: 30)
                             
                             Button(action: {
-                                if howMany != 15 {
+                                if howMany < 15 {
                                     howMany += 1
                                 }
-                            }, label: {
+                            }) {
                                 Image(systemName: "plus.square")
                                     .padding()
                                     .foregroundColor(.secondary)
-                                
-                            })
+                            }
                         }
                     }
                     .padding(.vertical)
                     
-                    Divider().frame(width: 380).background(Color("SystemGrayLight"))
+                    Divider().frame(width: 350).background(Color("SystemGrayLight"))
                     
                     HStack {
                         DatePicker("Start at:", selection: $startTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(CompactDatePickerStyle())
                             .font(.system(size: 18, weight: .regular, design: .rounded))
-                        
                     }
                     .padding(.vertical)
                     
-                    Divider().frame(width: 380).background(Color("SystemGrayLight"))
+                    Divider().frame(width: 350).background(Color("SystemGrayLight"))
                     
                     HStack {
                         DatePicker("End at:", selection: $endTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(CompactDatePickerStyle())
                             .font(.system(size: 18, weight: .regular, design: .rounded))
-                        
                     }
                     .padding(.vertical)
                     
-                    Divider().frame(width: 380).background(Color("SystemGrayLight"))
-                    Spacer()
+                    Divider().frame(width: 350).background(Color("SystemGrayLight"))
                     
+                    if !isValidTimeRange {
+                        HStack {
+                            Text("End time must be after start time")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                            Spacer()
+                        }
+                        .padding(.top, 8)
+                    }
                 }
-                .padding()
+                .padding(.horizontal)
                 
                 Spacer()
                 
@@ -109,32 +117,40 @@ struct NotificationSettingsView: View {
                     Button {
                         scheduleNotifications()
                     } label: {
-                        Text("Schedule")
-                            .font(.system(size: 18, weight: .semibold))
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(20)
+                        HStack {
+                            if isLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                    .scaleEffect(0.8)
+                                    .padding(.trailing, 8)
+                            }
+                            
+                            Text("Update Notifications")
+                                .font(.system(size: 18, weight: .semibold))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(isValidTimeRange ? Color.blue : Color.gray)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                     }
+                    .disabled(!isValidTimeRange || isLoading)
                     
                     Button {
-                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                        showingAlert = true
-                        alertType = .success
+                        disableNotifications()
                     } label: {
-                        Text("Disable")
+                        Text("Disable All Notifications")
                             .font(.system(size: 18, weight: .semibold))
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.gray.opacity(0.3))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                             .cornerRadius(20)
                     }
+                    .disabled(isLoading)
                 }
                 .padding()
             }
-            
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -142,54 +158,135 @@ struct NotificationSettingsView: View {
                         dismiss()
                     }
                 }
-               
             }
             .alert(alertType.title, isPresented: $showingAlert) {
-                Button("OK", role: .cancel) { }
+                if alertType == .permission {
+                    Button("Open Settings") {
+                        openSettings()
+                    }
+                    Button("Cancel", role: .cancel) { }
+                } else {
+                    Button("OK", role: .cancel) { }
+                }
             } message: {
                 Text(alertType.message)
+            }
+            .onAppear {
+                loadQuotesIfNeeded()
             }
         }
     }
     
-    private func scheduleNotifications() {
-        if Calendar.current.compare(startTime, to: endTime, toGranularity: .minute) != .orderedAscending {
-            alertType = .error
-            showingAlert = true
-            return
+    private var isValidTimeRange: Bool {
+        return Calendar.current.compare(startTime, to: endTime, toGranularity: .minute) == .orderedAscending
+    }
+    
+    private func loadQuotesIfNeeded() {
+        if quoteViewModel.quotes.isEmpty {
+            quoteViewModel.loadQuotes()
         }
+    }
+    
+    private func scheduleNotifications() {
+        guard !isLoading else { return }
+        isLoading = true
         
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             DispatchQueue.main.async {
                 switch settings.authorizationStatus {
-                case .authorized:
-                    let quotes = [Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")]
-                    notificationService.scheduleAllNotifications(from: startTime, to: endTime, count: howMany, quotes: quotes)
+                case .authorized, .provisional:
+                    self.performScheduling()
                     
-                    UserDefaults.standard.set(howMany, forKey: "howMany")
-                    UserDefaults.standard.set(startTime.timeIntervalSince1970, forKey: "startTime")
-                    UserDefaults.standard.set(endTime.timeIntervalSince1970, forKey: "endTime")
+                case .denied:
+                    self.isLoading = false
+                    self.alertType = .permission
+                    self.showingAlert = true
                     
-                    alertType = .success
-                    showingAlert = true
+                case .notDetermined:
+                    self.requestPermissionAndSchedule()
                     
-                case .denied, .notDetermined:
-                    alertType = .permission
-                    showingAlert = true
-                    
-                default:
-                    break
+                @unknown default:
+                    self.isLoading = false
+                    self.alertType = .permission
+                    self.showingAlert = true
                 }
             }
         }
+    }
+    
+    private func requestPermissionAndSchedule() {
+        notificationService.requestNotificationPermission { granted in
+            DispatchQueue.main.async {
+                if granted {
+                    self.performScheduling()
+                } else {
+                    self.isLoading = false
+                    self.alertType = .permission
+                    self.showingAlert = true
+                }
+            }
+        }
+    }
+    
+    private func performScheduling() {
+        let quotesToUse = quoteViewModel.quotes.isEmpty ? quotes : quoteViewModel.quotes
+        
+        notificationService.scheduleAllNotifications(
+            from: startTime,
+            to: endTime,
+            count: howMany,
+            quotes: quotesToUse
+        )
+        
+        saveSettings()
+        
+        isLoading = false
+        alertType = .success
+        showingAlert = true
+        
+    }
+    
+    private func disableNotifications() {
+        notificationService.clearAllNotifications()
+        
+        alertType = .disabled
+        showingAlert = true
+        
+    }
+    
+    private func saveSettings() {
+        UserDefaults.standard.set(howMany, forKey: "howMany")
+        UserDefaults.standard.set(startTime.timeIntervalSince1970, forKey: "startTime")
+        UserDefaults.standard.set(endTime.timeIntervalSince1970, forKey: "endTime")
+        UserDefaults.standard.synchronize()
+      
+    }
+    
+    private func openSettings() {
+        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(settingsUrl)
+        }
+    }
+    
+    private func formatTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
     }
 }
 
 #Preview {
     @Previewable @State var howManyPreview = 3
     @Previewable @State var startTimePreview = Date()
-    @Previewable @State var endTimePreview = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? Date()
-        let notificationServicePreview = NotificationService()
+    @Previewable @State var endTimePreview = Calendar.current.date(byAdding: .hour, value: 6, to: Date()) ?? Date()
+    let notificationServicePreview = NotificationService()
     
-    NotificationSettingsView(howMany:  $howManyPreview, startTime: $startTimePreview, endTime: $endTimePreview, notificationService: notificationServicePreview)
+    NotificationSettingsView(
+        howMany: $howManyPreview,
+        startTime: $startTimePreview,
+        endTime: $endTimePreview,
+        notificationService: notificationServicePreview,
+        quotes: [QuoteService.Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")]
+    )
 }
+

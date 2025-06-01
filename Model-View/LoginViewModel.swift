@@ -9,72 +9,89 @@ class LoginViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var message: String = ""
     @Published var showSuccessAlert: Bool = false
+    @Published var isLoading: Bool = false
     
     init() {
         checkAuthStatus()
         
         NotificationCenter.default.addObserver(self, selector: #selector(userAuthenticated),
-                                              name: .userAuthenticated, object: nil)
+                                               name: .userAuthenticated, object: nil)
     }
     func checkAuthStatus() {
-         let defaults = UserDefaults.standard
-         if let token = defaults.string(forKey: "JWT"), !token.isEmpty {
-             self.isAuthenticated = true
-         } else {
-             self.isAuthenticated = false
-         }
-     }
+        let defaults = UserDefaults.standard
+        if let token = defaults.string(forKey: "JWT"), !token.isEmpty {
+            self.isAuthenticated = true
+        } else {
+            self.isAuthenticated = false
+        }
+    }
     
     @objc private func userAuthenticated() {
         self.isAuthenticated = true
     }
     
     func login() {
- 
-        let defaults = UserDefaults.standard
+        guard !isLoading else { return }
+        isLoading = true
+        message = ""
         
-        Webservice().login(email: email, password: password, client: "ios") { result in
-            switch result {
-            case .success(let token):
-                defaults.setValue(token, forKey: "JWT")
-                defaults.setValue(true, forKey: "justAuthenticated")
-                
-                DispatchQueue.main.async {
-                    self.showSuccessAlert = true
+        Task {
+            do {
+                let token = try await Webservice().login(email: email, password: password, client: "ios")
+                await MainActor.run {
+                    let defaults = UserDefaults.standard
+                    defaults.setValue(token, forKey: "JWT")
+                    defaults.setValue(true, forKey: "justAuthenticated")
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self.isAuthenticated = true
-                        self.message = ""
-
+                    if defaults.string(forKey: "user_email")?.isEmpty ?? true {
+                        defaults.setValue(self.email, forKey: "user_email")
                     }
+                    
+                    if defaults.string(forKey: "user_full_name")?.isEmpty ?? true {
+                        defaults.setValue(self.email, forKey: "user_full_name")
+                    }
+                    
+                    defaults.synchronize()
+                    
+                    self.showSuccessAlert = true
+                    self.isAuthenticated = true
+                    self.message = ""
+                    
+                    NotificationCenter.default.post(name: .userAuthenticated, object: nil)
                 }
-            case .failure(let error):
-                DispatchQueue.main.async {
+            } catch let error as NetworkError {
+                await MainActor.run {
                     self.isAuthenticated = false
-                    switch error {
-                    case .invalidCredentials:
-                        self.message = "Invalid email or password"
-                    case .custom(let errorMessage):
-                        self.message = errorMessage
-                    case .serverError(message: _):
-                        self.isAuthenticated =  false
-                    case .decodingError(message: _): break
-                        
-                    }
+                    self.message = error.localizedDescription
                 }
+            } catch {
+                await MainActor.run {
+                    self.isAuthenticated = false
+                    self.message = "An unexpected error occurred"
+                }
+            }
+            
+            await MainActor.run {
+                self.isLoading = false
             }
         }
     }
     func signout() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "JWT")
-
+        defaults.removeObject(forKey: "user_email")
+        defaults.removeObject(forKey: "user_fullname")
+        defaults.removeObject(forKey: "user_profile_image")
+        defaults.removeObject(forKey: "justAuthenticated")
+        defaults.synchronize()
+        
+        
         DispatchQueue.main.async {
             self.isAuthenticated = false
             self.email = ""
             self.password = ""
             self.message = ""
-
+            
             if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = scene.windows.first {
                 window.rootViewController = UIHostingController(rootView: Welcome().environmentObject(self))
@@ -82,7 +99,7 @@ class LoginViewModel: ObservableObject {
             }
         }
     }
- }
+}
 
 
 

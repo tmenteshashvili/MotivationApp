@@ -7,6 +7,8 @@ struct ContentView: View {
     @State private var token: String?
     @State private var email: String?
     @State private var showResetPassword = false
+    var quotes: [QuoteService.Quote]
+
     
     var body: some View {
         Group {
@@ -17,7 +19,7 @@ struct ContentView: View {
                             UserDefaults.standard.set(0, forKey: "selectedTab")
                         }
                 } else {
-                    RemainderView(howMany: 3, quotes: [ Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
+                    RemainderView(howMany: 3, quotes: [QuoteService.Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")
                                                       ])
                 }
                 
@@ -90,7 +92,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(quotes: [QuoteService.Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")])
         .environmentObject(LoginViewModel())
     
 }

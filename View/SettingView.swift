@@ -34,7 +34,7 @@ struct SettingView: View {
                             NotificationSettingsView(howMany: $settingsViewModel.howMany,
                                                      startTime: $settingsViewModel.startTime,
                                                      endTime: $settingsViewModel.endTime,
-                                                     notificationService: notificationService)
+                                                     notificationService: notificationService, quotes: [QuoteService.Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")])
                         }
                 }
                 .padding(.horizontal)
@@ -51,6 +51,25 @@ struct SettingView: View {
         }
         .onAppear {
             profileViewModel.fetchUserProfile()
+            selectedImage = profileViewModel.profileImage
+        }
+        .onChange(of: selectedImage) { newImage in
+            saveProfileImage(newImage)
+        }
+    }
+    
+    private func saveProfileImage(_ image: UIImage?) {
+        guard let image = image else {return}
+        
+        if let imageData = image.jpegData(compressionQuality: 0.8) {
+            UserDefaults.standard.set(imageData, forKey: "user_profile_image")
+            UserDefaults.standard.synchronize()
+            
+            profileViewModel.profileImage = image
+            
+            if let user = profileViewModel.user {
+                profileViewModel.user = UserProfile(fullName: user.fullName, email: user.email, photoUrl: user.photoUrl, imageData: user.imageData)
+            }
         }
     }
     
@@ -58,7 +77,7 @@ struct SettingView: View {
         VStack(alignment: .leading) {
             HStack {
                 Button(action: { showImagePicker.toggle() }) {
-                    if let image = selectedImage {
+                    if let image = selectedImage ?? profileViewModel.profileImage {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
@@ -130,7 +149,7 @@ struct SettingView: View {
                 HStack {
                     Image(systemName: "arrow.backward.circle")
                         .foregroundColor(.primary)
-                    Text("Sing Out")
+                    Text("Sign Out")
                         .foregroundColor(.primary)
                     Spacer()
                 }

@@ -2,10 +2,10 @@
 import SwiftUI
 
 struct EachQuote: View {
-    public var quote: Quote
+    public var quote: QuoteService.Quote
     @State private var isLiked = false
     
-    public init(quote: Quote) {
+    public init(quote: QuoteService.Quote) {
         self.quote = quote
         
         
@@ -108,5 +108,5 @@ extension UserDefaults {
 
 
 #Preview {
-    EachQuote(quote: Quote(id: 11, category: "Motivational", type: "text", author: "Theodore Roosevelt", content: "Do what you can, with what you have, where you are."))
+    EachQuote(quote: QuoteService.Quote(id: 11, category: "Motivational", type: "text", author: "Theodore Roosevelt", content: "Do what you can, with what you have, where you are."))
 }

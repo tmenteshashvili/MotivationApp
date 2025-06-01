@@ -18,6 +18,8 @@
 		3C0D1D672CE9143400744CB8 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D5A2CE9143400744CB8 /* SettingView.swift */; };
 		3C0D1D7E2CF21A6900744CB8 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D7D2CF21A6900744CB8 /* NotificationSettingsView.swift */; };
 		3C0D1D802CF4E1AC00744CB8 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D7F2CF4E1AC00744CB8 /* FavoritesView.swift */; };
+		3C4BADF52DE8C19B004277E9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BADF42DE8C19B004277E9 /* NetworkError.swift */; };
+		3C4BADFB2DE8C5C4004277E9 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BADFA2DE8C5C4004277E9 /* QuoteViewModel.swift */; };
 		3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D72C778A360053029B /* SignupViewModel.swift */; };
 		3C56B6DA2C7E338E0053029B /* RecoverPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */; };
 		3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6DB2C8778620053029B /* NotificationService.swift */; };
@@ -57,6 +59,8 @@
 		3C0D1D5D2CE9143400744CB8 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		3C0D1D7D2CF21A6900744CB8 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		3C0D1D7F2CF4E1AC00744CB8 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		3C4BADF42DE8C19B004277E9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		3C4BADFA2DE8C5C4004277E9 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		3C56B6D72C778A360053029B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewModel.swift; sourceTree = "<group>"; };
 		3C56B6DB2C8778620053029B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 				3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */,
 				3CD542C92C9C75B7006BC896 /* SettingsViewModel.swift */,
 				3C6C8A112D5E7EEA00BB9A05 /* ProfileViewModel.swift */,
+				3C4BADF42DE8C19B004277E9 /* NetworkError.swift */,
+				3C4BADFA2DE8C5C4004277E9 /* QuoteViewModel.swift */,
 			);
 			path = "Model-View";
 			sourceTree = "<group>";
@@ -299,9 +305,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C0D1D802CF4E1AC00744CB8 /* FavoritesView.swift in Sources */,
+				3C4BADF52DE8C19B004277E9 /* NetworkError.swift in Sources */,
 				3C0D1D5E2CE9143400744CB8 /* LoginView.swift in Sources */,
 				3CD88A762D01B96300299430 /* QuoteView.swift in Sources */,
 				3C0D1D5F2CE9143400744CB8 /* EachQuote.swift in Sources */,
+				3C4BADFB2DE8C5C4004277E9 /* QuoteViewModel.swift in Sources */,
 				3C7877A22D7771BC00E5665C /* AppDelegate.swift in Sources */,
 				3C0D1D602CE9143400744CB8 /* RecoverPasswordView.swift in Sources */,
 				3C0D1D612CE9143400744CB8 /* SignupView.swift in Sources */,
@@ -460,7 +468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MotivationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 6VNA79VZQ4;
 				ENABLE_PREVIEWS = YES;
@@ -478,7 +486,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.takomenteshashvili.MotivationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -493,7 +501,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MotivationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 6VNA79VZQ4;
 				ENABLE_PREVIEWS = YES;
@@ -511,7 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.takomenteshashvili.MotivationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

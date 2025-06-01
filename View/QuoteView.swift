@@ -3,10 +3,9 @@ import SwiftUI
 import UserNotifications
 
 struct QuoteView: View {
-    @State var quotas = [Quote]()
+    @StateObject private var viewModel = QuoteViewModel()
     @State private var navigateToReminder = false
     @State private var showingSettingsSheet = false
-    @State private var selectedQuote: Quote?
     @State private var isSharePresented = false
     @State private var showingFavoritesView = false
     @AppStorage("firstLaunch") private var isFirstLaunch = true
@@ -17,7 +16,7 @@ struct QuoteView: View {
                     .offset(y: 210)
                 GeometryReader { proxy in
                     TabView {
-                        ForEach(quotas) { quote in
+                        ForEach(viewModel.quotes) { quote in
                             EachQuote(quote: quote)
                         }
                         .rotationEffect(.degrees(-90))
@@ -50,11 +49,11 @@ struct QuoteView: View {
             do {
                 if isFirstLaunch {
                     
-                    quotas = try await fetchQuotes()
+                     viewModel.loadQuotes()
                     isFirstLaunch = false
                 } else {
                   
-                    quotas = try await fetchQuotes()
+                     viewModel.loadQuotes()
                 }
             } catch {
                 print("Failed to fetch quotes: \(error)")

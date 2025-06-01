@@ -4,6 +4,7 @@ import Combine
 
 class ProfileViewModel: ObservableObject {
     @Published var user: UserProfile?
+    @Published var profileImage: UIImage?
     
     init() {
         fetchUserProfile()
@@ -28,14 +29,21 @@ class ProfileViewModel: ObservableObject {
             }
         }
         
-        self.user = UserProfile(fullName: fullName, email: email, photoUrl: "")
+        
+       let imageData = defaults.data(forKey: "user_profile_image")
+            if let imageData = imageData {
+            self.profileImage = UIImage(data: imageData)
+        }
+        
+        self.user = UserProfile(fullName: fullName, email: email, photoUrl: "", imageData: imageData)
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let updatedFullName = defaults.string(forKey: "user_fullname") ?? fullName
             let updatedEmail = defaults.string(forKey: "user_email") ?? email
             
             if updatedFullName != fullName || updatedEmail != email {
-                self.user = UserProfile(fullName: updatedFullName, email: updatedEmail, photoUrl: "")
+                self.user = UserProfile(fullName: updatedFullName, email: updatedEmail, photoUrl: "", imageData: self.user?.imageData)
             }
         }
         
@@ -45,13 +53,31 @@ class ProfileViewModel: ObservableObject {
         UserDefaults.standard.setValue(email, forKey: "user_email")
         UserDefaults.standard.synchronize()
         
-        self.user = UserProfile(fullName: fullName, email: email, photoUrl: self.user?.photoUrl ?? "")
+        self.user = UserProfile(fullName: fullName, email: email, photoUrl: self.user?.photoUrl ?? "", imageData: self.user?.imageData)
     }
+    func saveProfileImage(_ image: UIImage) {
+          if let imageData = image.jpegData(compressionQuality: 0.8) {
+              UserDefaults.standard.set(imageData, forKey: "user_profile_image")
+              UserDefaults.standard.synchronize()
+              
+              self.profileImage = image
+              
+              if let user = self.user {
+                  self.user = UserProfile(
+                      fullName: user.fullName,
+                      email: user.email,
+                      photoUrl: user.photoUrl,
+                      imageData: imageData
+                  )
+              }
+          }
+      }
 }
 
 struct UserProfile {
     var fullName: String
     var email: String
     var photoUrl: String
+    var imageData: Data?
 }
 

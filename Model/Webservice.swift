@@ -72,70 +72,57 @@ struct RecoverResponse: Codable {
 class Webservice {
     private let baseURL = "https://motivation.kakhoshvili.com/api/auth"
     
+    enum NetworkError: Error {
+        case invalidCredentials
+        case serverError(message: String)
+        case decodingError(message: String)
+        case custom(String)
+    }
+    
     // MARK: - Login
-    func login(email: String, password: String, client: String, completion: @escaping(Result<String, AuthenticationError>) -> Void) {
-        let endpoint = "\(baseURL)/login"
-        
-        guard let url = URL(string: endpoint) else {
-            completion(.failure(.custom(errorMessage: "Invalid URL")))
-            return
+    func login(email: String, password: String, client: String) async throws -> String {
+        guard let url = URL(string: "\(baseURL)/login") else {
+            throw NetworkError.custom("Invalid URL")
         }
-        
-        let body = LoginRequestBody(email: email, password: password, client: client)
-        
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        if let jsonData = try? JSONEncoder().encode(body),
-           let _ = String(data: jsonData, encoding: .utf8) {
-            
+        let loginData = [
+            "email": email,
+            "password": password,
+            "client": client
+        ]
+        
+        request.httpBody = try? JSONEncoder().encode(loginData)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.serverError(message: "Invalid response")
         }
         
-        request.httpBody = try? JSONEncoder().encode(body)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            if let data = data, let responseString = String(data: data, encoding: .utf8) {
-                print("Login Raw Response: \(responseString)")
-            }
-            
-            if let error = error {
-                completion(.failure(.custom(errorMessage: "Network error: \(error.localizedDescription)")))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.custom(errorMessage: "No data received from server")))
-                return
+        switch httpResponse.statusCode {
+        case 200...299:
+            struct LoginResponse: Codable {
+                let token: String
             }
             
             do {
                 let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-                UserDefaults.standard.setValue(loginResponse.token, forKey: USER_AUTH_TOKEN)
-                completion(.success(loginResponse.token))
+                return loginResponse.token
             } catch {
-                if let responseString = String(data: data, encoding: .utf8) {
-                    if responseString.contains("<") {
-                        print("Server returned HTML: \(responseString)")
-                        completion(.failure(.custom(errorMessage: "Server returned HTML instead of JSON. The API endpoint might be incorrect.")))
-                    } else {
-                        do {
-                            let errorResponse = try JSONDecoder().decode([String: String].self, from: data)
-                            let errorMessage = errorResponse.values.first ?? "Unknown error"
-                            completion(.failure(.custom(errorMessage: errorMessage)))
-                        } catch {
-                            completion(.failure(.custom(errorMessage: "Failed to decode server response: \(error.localizedDescription)")))
-                        }
-                    }
-                }
+                throw NetworkError.decodingError(message: "Failed to decode token")
             }
-        }.resume()
+            
+        case 401:
+            throw NetworkError.invalidCredentials
+            
+        default:
+            throw NetworkError.serverError(message: "Server returned status code \(httpResponse.statusCode)")
+        }
     }
-    
-    
     
     // MARK: - Signup
     func signup(email: String, full_name: String, password: String, password_confirmation: String, completion: @escaping(Result<String, AuthenticationError>) -> Void) {

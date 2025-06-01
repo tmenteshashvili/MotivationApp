@@ -10,6 +10,7 @@ class SignupViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var message: String = ""
     @Published var showSuccessAlert: Bool = false
+    @Published var isLoading: Bool = false
     
     
     func signup() {
@@ -24,24 +25,23 @@ class SignupViewModel: ObservableObject {
             return
         }
         
+        isLoading = true
+        message = ""
         let defaults = UserDefaults.standard
         
         Webservice().signup(email: email, full_name: full_name, password: password, password_confirmation: password_confirmation) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let token):
-                    defaults.setValue(token, forKey: "JWT")
                     defaults.setValue(self.email, forKey: "user_email")
                     defaults.setValue(self.full_name, forKey: "user_fullname")
                     defaults.setValue(true, forKey: "justAuthenticated")
                     
-                    self.showSuccessAlert = true
+                    defaults.synchronize()
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self.isAuthenticated = true
-                        self.message = ""
-                    }
+                    self.autoLoginAfterSignup()
                     
+
                 case .failure(let error):
                     self.isAuthenticated = false
                     switch error {
@@ -58,5 +58,38 @@ class SignupViewModel: ObservableObject {
             }
         }
     }
-    
+    private func autoLoginAfterSignup() {
+            Task {
+                do {
+                    let token = try await Webservice().login(email: self.email, password: self.password, client: "ios")
+                    await MainActor.run {
+                        let defaults = UserDefaults.standard
+                        
+                        defaults.setValue(token, forKey: "JWT")
+                        defaults.setValue(true, forKey: "justAuthenticated")
+                        
+                        defaults.setValue(self.email, forKey: "user_email")
+                        defaults.setValue(self.full_name, forKey: "user_fullname")
+                        
+                        defaults.synchronize()
+                        
+                        print("Auto-login successful, token saved")
+                        print("Final UserDefaults - Email: \(defaults.string(forKey: "user_email") ?? "nil"), Name: \(defaults.string(forKey: "user_fullname") ?? "nil")")
+                        
+                        self.showSuccessAlert = true
+                        self.isAuthenticated = true
+                        self.message = ""
+                        self.isLoading = false
+                        
+                        NotificationCenter.default.post(name: .userAuthenticated, object: nil)
+                    }
+                } catch {
+                    await MainActor.run {
+                        self.isLoading = false
+                        self.message = "Account created but login failed. Please try logging in manually."
+                        print("Auto-login failed: \(error)")
+                    }
+                }
+            }
+        }
 }
