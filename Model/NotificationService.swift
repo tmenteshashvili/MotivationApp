@@ -73,12 +73,7 @@ class NotificationService: NSObject, ObservableObject {
         }
         
         let arrayOfTimes = createArrayOfTimes(from: startTime, to: endTime, count: count)
-        
-        //        for (index, time) in arrayOfTimes.enumerated() {
-        //            let quote = quotes[index % quotes.count]
-        //            let hour = Calendar.current.component(.hour, from: time)
-        //            let minute = Calendar.current.component(.minute, from: time)
-        //
+      
         for i in 0..<count {
             let time = arrayOfTimes[i]
             let quote = quotes[i % quotes.count] // Cycle through quotes if needed

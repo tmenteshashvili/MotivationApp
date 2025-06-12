@@ -15,6 +15,7 @@ class ProfileViewModel: ObservableObject {
         var fullName = defaults.string(forKey: "user_fullname") ?? "Unknown"
         var email = defaults.string(forKey: "user_email") ?? ""
         
+        
         if fullName.isEmpty || email.isEmpty {
             if let token = defaults.string(forKey: "JWT"), !token.isEmpty {
                 if email.isEmpty {
@@ -37,7 +38,7 @@ class ProfileViewModel: ObservableObject {
         
         self.user = UserProfile(fullName: fullName, email: email, photoUrl: "", imageData: imageData)
         
-        
+                
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let updatedFullName = defaults.string(forKey: "user_fullname") ?? fullName
             let updatedEmail = defaults.string(forKey: "user_email") ?? email
@@ -49,12 +50,18 @@ class ProfileViewModel: ObservableObject {
         
     }
     func saveProfile(fullName: String, email: String) {
-        UserDefaults.standard.setValue(fullName, forKey: "user_fullname")
-        UserDefaults.standard.setValue(email, forKey: "user_email")
+       
+        UserDefaults.standard.set(fullName, forKey: "user_fullname")
+        UserDefaults.standard.set(email, forKey: "user_email")
         UserDefaults.standard.synchronize()
+        
+        let savedName = UserDefaults.standard.string(forKey: "user_fullname") ?? "NOT_SAVED"
+        let savedEmail = UserDefaults.standard.string(forKey: "user_email") ?? "NOT_SAVED"
+           
         
         self.user = UserProfile(fullName: fullName, email: email, photoUrl: self.user?.photoUrl ?? "", imageData: self.user?.imageData)
     }
+    
     func saveProfileImage(_ image: UIImage) {
           if let imageData = image.jpegData(compressionQuality: 0.8) {
               UserDefaults.standard.set(imageData, forKey: "user_profile_image")

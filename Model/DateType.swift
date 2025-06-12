@@ -30,7 +30,7 @@ class QuoteService: ObservableObject {
     struct QuotePageInfo: Codable{
         var currentPage: Int
         var lastUpdateDate: Date
-        static let defaultPageChangeInterval: TimeInterval = 2 * 24 * 60 * 60
+        static let defaultPageChangeInterval: TimeInterval = 12 * 60 * 60
     }
     
     private enum UserDefaultsKeys {
@@ -40,14 +40,13 @@ class QuoteService: ObservableObject {
     
     
     func fetchQuotes() async throws -> [Quote] {
-        let pageInfo = getCurrentPageInfo()
+        var pageInfo = getCurrentPageInfo()
         
         if shouldUpdatePage(lastUpdate: pageInfo.lastUpdateDate) {
-            let nextPage = pageInfo.currentPage + 1
-            let newPageInfo = QuotePageInfo(currentPage: nextPage,
-                                            lastUpdateDate: Date())
-            savePageInfo(newPageInfo)
-        }
+               let nextPage = pageInfo.currentPage + 1
+               pageInfo = QuotePageInfo(currentPage: nextPage, lastUpdateDate: Date())
+               savePageInfo(pageInfo)
+           }
         
         let url = URL(string: "\(baseURL)/quotes?page=\(pageInfo.currentPage)")!
         let (data, response) = try await URLSession.shared.data(from: url)

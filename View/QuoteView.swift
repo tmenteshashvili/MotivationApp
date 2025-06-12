@@ -10,62 +10,55 @@ struct QuoteView: View {
     @State private var showingFavoritesView = false
     @AppStorage("firstLaunch") private var isFirstLaunch = true
     
+
     var body: some View {
-            ZStack {
-                Image("Hands")
-                    .offset(y: 210)
-                GeometryReader { proxy in
-                    TabView {
-                        ForEach(viewModel.quotes) { quote in
-                            EachQuote(quote: quote)
-                        }
-                        .rotationEffect(.degrees(-90))
-                        .frame(
-                            width: proxy.size.width,
-                            height: proxy.size.height
-                        )
+        ZStack {
+            Image("Hands")
+                .offset(y: 210)
+            GeometryReader { proxy in
+                TabView {
+                    ForEach(viewModel.quotes) { quote in
+                        EachQuote(quote: quote)
                     }
+                    .rotationEffect(.degrees(-90))
                     .frame(
-                        width: proxy.size.height,
-                        height: proxy.size.width
-                    )
-                    .rotationEffect(.degrees(90), anchor: .topLeading)
-                    .offset(x: proxy.size.width)
-                    .tabViewStyle(
-                        PageTabViewStyle(indexDisplayMode: .never)
+                        width: proxy.size.width,
+                        height: proxy.size.height
                     )
                 }
-                
-                Button(action: {
-                    showingFavoritesView = true
-                }) {
-                    EmptyView()
-                }
+                .frame(
+                    width: proxy.size.height,
+                    height: proxy.size.width
+                )
+                .rotationEffect(.degrees(90), anchor: .topLeading)
+                .offset(x: proxy.size.width)
+                .tabViewStyle(
+                    PageTabViewStyle(indexDisplayMode: .never)
+                )
             }
             .navigationDestination(isPresented: $showingFavoritesView) {
                 FavoritesView()
             }
-        .task {
-            do {
-                if isFirstLaunch {
-                    
-                     viewModel.loadQuotes()
-                    isFirstLaunch = false
-                } else {
-                  
-                     viewModel.loadQuotes()
+            .task {
+                do {
+                    if isFirstLaunch {
+                        
+                        viewModel.loadQuotes()
+                        isFirstLaunch = false
+                    } else {
+                        
+                        viewModel.loadQuotes()
+                    }
+                } catch {
+                    print("Failed to fetch quotes: \(error)")
                 }
-            } catch {
-                print("Failed to fetch quotes: \(error)")
             }
-        }
-        .sheet(isPresented: $showingFavoritesView) {
-            FavoritesView()
+            .sheet(isPresented: $showingFavoritesView) {
+                FavoritesView()
+            }
         }
     }
 }
-
-
 
 #Preview {
     QuoteView()

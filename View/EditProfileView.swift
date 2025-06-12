@@ -60,16 +60,7 @@ struct EditProfileView: View {
     }
     
     private func saveProfile() {
-        
-        profileViewModel.user = UserProfile(fullName: fullName, email: email, photoUrl: profileViewModel.user?.photoUrl ?? "")
-        
-        UserDefaults.standard.setValue(fullName, forKey: "user_fullname")
-        UserDefaults.standard.setValue(email, forKey: "user_email")
-        UserDefaults.standard.synchronize()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                   profileViewModel.fetchUserProfile()
-               }
+        profileViewModel.saveProfile(fullName: fullName, email: email)
     }
 }
 

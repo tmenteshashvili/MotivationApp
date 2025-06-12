@@ -58,7 +58,7 @@ struct RemainderView: View {
                 
                 VStack(spacing: 20) {
                     HStack {
-                        Text("How many per day")
+                        Text("How many")
                             .font(.system(size: 18, weight: .regular, design: .rounded))
                         
                         Spacer()

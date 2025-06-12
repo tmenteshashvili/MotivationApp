@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,11 @@
 		3C0D1D802CF4E1AC00744CB8 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D1D7F2CF4E1AC00744CB8 /* FavoritesView.swift */; };
 		3C4BADF52DE8C19B004277E9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BADF42DE8C19B004277E9 /* NetworkError.swift */; };
 		3C4BADFB2DE8C5C4004277E9 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BADFA2DE8C5C4004277E9 /* QuoteViewModel.swift */; };
+		3C4BAFA12DFAE2FD004277E9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4BAFA02DFAE2FD004277E9 /* WidgetKit.framework */; };
+		3C4BAFA32DFAE2FD004277E9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4BAFA22DFAE2FD004277E9 /* SwiftUI.framework */; };
+		3C4BAFB42DFAE2FF004277E9 /* Today's InspirationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3C4BAF9E2DFAE2FD004277E9 /* Today's InspirationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3C4BAFBC2DFB240C004277E9 /* DateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B3482C6520E000C80538 /* DateType.swift */; };
+		3C4BAFBD2DFB2429004277E9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BADF42DE8C19B004277E9 /* NetworkError.swift */; };
 		3C56B6D82C778A360053029B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D72C778A360053029B /* SignupViewModel.swift */; };
 		3C56B6DA2C7E338E0053029B /* RecoverPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */; };
 		3C56B6DC2C8778620053029B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56B6DB2C8778620053029B /* NotificationService.swift */; };
@@ -47,6 +52,30 @@
 		3CD88A762D01B96300299430 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD88A752D01B96300299430 /* QuoteView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3C4BAFB22DFAE2FF004277E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C60B31E2C61068200C80538 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C4BAF9D2DFAE2FC004277E9;
+			remoteInfo = "Today's InspirationExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3C4BAFB52DFAE2FF004277E9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3C4BAFB42DFAE2FF004277E9 /* Today's InspirationExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3C0D1D542CE9143400744CB8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3C0D1D552CE9143400744CB8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -61,6 +90,11 @@
 		3C0D1D7F2CF4E1AC00744CB8 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		3C4BADF42DE8C19B004277E9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		3C4BADFA2DE8C5C4004277E9 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
+		3C4BAF9E2DFAE2FD004277E9 /* Today's InspirationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today's InspirationExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C4BAFA02DFAE2FD004277E9 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3C4BAFA22DFAE2FD004277E9 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3C4BAFBA2DFB1F33004277E9 /* MotivationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MotivationApp.entitlements; sourceTree = "<group>"; };
+		3C4BAFBB2DFB1F48004277E9 /* Today's InspirationExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Today's InspirationExtension.entitlements"; sourceTree = "<group>"; };
 		3C56B6D72C778A360053029B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		3C56B6D92C7E338E0053029B /* RecoverPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewModel.swift; sourceTree = "<group>"; };
 		3C56B6DB2C8778620053029B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -90,7 +124,30 @@
 		3CD88A752D01B96300299430 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3C4BAFB82DFAE2FF004277E9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 3C4BAF9D2DFAE2FC004277E9 /* Today's InspirationExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3C4BAFA42DFAE2FD004277E9 /* Today's Inspiration */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (3C4BAFB82DFAE2FF004277E9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Today's Inspiration"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		3C4BAF9B2DFAE2FC004277E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C4BAFA32DFAE2FD004277E9 /* SwiftUI.framework in Frameworks */,
+				3C4BAFA12DFAE2FD004277E9 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C60B3232C61068200C80538 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -129,9 +186,19 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		3C4BAF9F2DFAE2FD004277E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C4BAFA02DFAE2FD004277E9 /* WidgetKit.framework */,
+				3C4BAFA22DFAE2FD004277E9 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3C60B31D2C61068200C80538 = {
 			isa = PBXGroup;
 			children = (
+				3C4BAFBB2DFB1F48004277E9 /* Today's InspirationExtension.entitlements */,
 				3C60B3542C74FA4400C80538 /* Font */,
 				3C60B3282C61068200C80538 /* MotivationApp */,
 				3C0D1D682CE9143C00744CB8 /* Components */,
@@ -139,6 +206,8 @@
 				3CD542DB2CBA7B01006BC896 /* Model-View */,
 				3C60B3472C6520A300C80538 /* Model */,
 				3C60B33E2C612AE800C80538 /* Helper */,
+				3C4BAFA42DFAE2FD004277E9 /* Today's Inspiration */,
+				3C4BAF9F2DFAE2FD004277E9 /* Frameworks */,
 				3C60B3272C61068200C80538 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -147,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				3C60B3262C61068200C80538 /* MotivationApp.app */,
+				3C4BAF9E2DFAE2FD004277E9 /* Today's InspirationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,6 +224,7 @@
 		3C60B3282C61068200C80538 /* MotivationApp */ = {
 			isa = PBXGroup;
 			children = (
+				3C4BAFBA2DFB1F33004277E9 /* MotivationApp.entitlements */,
 				3C60B3642C74FA9300C80538 /* Info.plist */,
 				3C60B3292C61068200C80538 /* MotivationAppApp.swift */,
 				3C60B32B2C61068200C80538 /* ContentView.swift */,
@@ -230,6 +301,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3C4BAF9D2DFAE2FC004277E9 /* Today's InspirationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C4BAFB92DFAE2FF004277E9 /* Build configuration list for PBXNativeTarget "Today's InspirationExtension" */;
+			buildPhases = (
+				3C4BAF9A2DFAE2FC004277E9 /* Sources */,
+				3C4BAF9B2DFAE2FC004277E9 /* Frameworks */,
+				3C4BAF9C2DFAE2FC004277E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3C4BAFA42DFAE2FD004277E9 /* Today's Inspiration */,
+			);
+			name = "Today's InspirationExtension";
+			packageProductDependencies = (
+			);
+			productName = "Today's InspirationExtension";
+			productReference = 3C4BAF9E2DFAE2FD004277E9 /* Today's InspirationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		3C60B3252C61068200C80538 /* MotivationApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C60B3342C61068400C80538 /* Build configuration list for PBXNativeTarget "MotivationApp" */;
@@ -237,10 +330,12 @@
 				3C60B3222C61068200C80538 /* Sources */,
 				3C60B3232C61068200C80538 /* Frameworks */,
 				3C60B3242C61068200C80538 /* Resources */,
+				3C4BAFB52DFAE2FF004277E9 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3C4BAFB32DFAE2FF004277E9 /* PBXTargetDependency */,
 			);
 			name = MotivationApp;
 			productName = MotivationApp;
@@ -254,9 +349,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					3C4BAF9D2DFAE2FC004277E9 = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					3C60B3252C61068200C80538 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -276,11 +374,19 @@
 			projectRoot = "";
 			targets = (
 				3C60B3252C61068200C80538 /* MotivationApp */,
+				3C4BAF9D2DFAE2FC004277E9 /* Today's InspirationExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3C4BAF9C2DFAE2FC004277E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C60B3242C61068200C80538 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +406,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3C4BAF9A2DFAE2FC004277E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C4BAFBD2DFB2429004277E9 /* NetworkError.swift in Sources */,
+				3C4BAFBC2DFB240C004277E9 /* DateType.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C60B3222C61068200C80538 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,7 +453,73 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3C4BAFB32DFAE2FF004277E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C4BAF9D2DFAE2FC004277E9 /* Today's InspirationExtension */;
+			targetProxy = 3C4BAFB22DFAE2FF004277E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3C4BAFB62DFAE2FF004277E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Today's InspirationExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6VNA79VZQ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Today's Inspiration/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Today's Inspiration";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.takomenteshashvili.MotivationApp.Today-s-Inspiration";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3C4BAFB72DFAE2FF004277E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Today's InspirationExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6VNA79VZQ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Today's Inspiration/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Today's Inspiration";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.takomenteshashvili.MotivationApp.Today-s-Inspiration";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		3C60B3322C61068400C80538 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -467,8 +648,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MotivationApp/MotivationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MotivationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 6VNA79VZQ4;
 				ENABLE_PREVIEWS = YES;
@@ -486,7 +668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.takomenteshashvili.MotivationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -500,8 +682,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MotivationApp/MotivationApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MotivationApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 6VNA79VZQ4;
 				ENABLE_PREVIEWS = YES;
@@ -519,7 +702,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.takomenteshashvili.MotivationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -531,6 +714,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3C4BAFB92DFAE2FF004277E9 /* Build configuration list for PBXNativeTarget "Today's InspirationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C4BAFB62DFAE2FF004277E9 /* Debug */,
+				3C4BAFB72DFAE2FF004277E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3C60B3212C61068200C80538 /* Build configuration list for PBXProject "MotivationApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
