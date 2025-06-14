@@ -1,4 +1,3 @@
-
 import SwiftUI
 import UserNotifications
 
@@ -195,7 +194,9 @@ struct NotificationSettingsView: View {
             DispatchQueue.main.async {
                 switch settings.authorizationStatus {
                 case .authorized, .provisional:
-                    self.performScheduling()
+                    Task {
+                        await self.performScheduling()
+                    }
                     
                 case .denied:
                     self.isLoading = false
@@ -218,7 +219,9 @@ struct NotificationSettingsView: View {
         notificationService.requestNotificationPermission { granted in
             DispatchQueue.main.async {
                 if granted {
-                    self.performScheduling()
+                    Task {
+                        await self.performScheduling()
+                    }
                 } else {
                     self.isLoading = false
                     self.alertType = .permission
@@ -228,30 +231,35 @@ struct NotificationSettingsView: View {
         }
     }
     
-    private func performScheduling() {
+    private func performScheduling() async {
         let quotesToUse = quoteViewModel.quotes.isEmpty ? quotes : quoteViewModel.quotes
         
-        notificationService.scheduleAllNotifications(
+        await notificationService.scheduleAllNotificationsWithPagination(
             from: startTime,
             to: endTime,
-            count: howMany,
-            quotes: quotesToUse
+            count: howMany
         )
         
-        saveSettings()
-        
-        isLoading = false
-        alertType = .success
-        showingAlert = true
-        
+        await MainActor.run {
+            saveSettings()
+            isLoading = false
+            alertType = .success
+            showingAlert = true
+        }
     }
     
     private func disableNotifications() {
-        notificationService.clearAllNotifications()
+        isLoading = true
         
-        alertType = .disabled
-        showingAlert = true
-        
+        Task {
+            await notificationService.clearAllNotifications()
+            
+            await MainActor.run {
+                isLoading = false
+                alertType = .disabled
+                showingAlert = true
+            }
+        }
     }
     
     private func saveSettings() {
@@ -259,7 +267,6 @@ struct NotificationSettingsView: View {
         UserDefaults.standard.set(startTime.timeIntervalSince1970, forKey: "startTime")
         UserDefaults.standard.set(endTime.timeIntervalSince1970, forKey: "endTime")
         UserDefaults.standard.synchronize()
-      
     }
     
     private func openSettings() {
@@ -289,4 +296,3 @@ struct NotificationSettingsView: View {
         quotes: [QuoteService.Quote(id: 1, category: "Motivational", type: "text", author: "Benjamin Franklin", content: "Let all your things have their places; let each part of your business have its time.")]
     )
 }
-

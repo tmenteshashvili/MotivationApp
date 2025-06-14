@@ -6,14 +6,14 @@ class QuoteViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
     
-    private let quoteService = QuoteService()
+     let quoteService = QuoteService()
     
-    func loadQuotes() {
+    func loadQuotes(forceRefresh: Bool = false) {
         Task { @MainActor in
             do {
                 isLoading = true
                 error = nil
-                quotes = try await quoteService.fetchQuotes()
+                quotes = try await quoteService.fetchQuotes(forceNewPage: forceRefresh)
             } catch {
                 handleError(error)
             }

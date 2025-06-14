@@ -1,6 +1,7 @@
 
 import SwiftUI
 import UserNotifications
+import WidgetKit
 
 struct QuoteView: View {
     @StateObject private var viewModel = QuoteViewModel()
@@ -10,7 +11,7 @@ struct QuoteView: View {
     @State private var showingFavoritesView = false
     @AppStorage("firstLaunch") private var isFirstLaunch = true
     
-
+    
     var body: some View {
         ZStack {
             Image("Hands")
@@ -36,6 +37,7 @@ struct QuoteView: View {
                     PageTabViewStyle(indexDisplayMode: .never)
                 )
             }
+            
             .navigationDestination(isPresented: $showingFavoritesView) {
                 FavoritesView()
             }
@@ -46,7 +48,6 @@ struct QuoteView: View {
                         viewModel.loadQuotes()
                         isFirstLaunch = false
                     } else {
-                        
                         viewModel.loadQuotes()
                     }
                 } catch {

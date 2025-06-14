@@ -1,7 +1,11 @@
 import WidgetKit
 import SwiftUI
 
-// MARK: - Widget Provider
+struct QuoteEntry: TimelineEntry {
+    let date: Date
+    let quote: QuoteService.Quote
+}
+
 struct QuoteProvider: TimelineProvider {
     func placeholder(in context: Context) -> QuoteEntry {
         QuoteEntry(
@@ -33,88 +37,116 @@ struct QuoteProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<QuoteEntry>) -> ()) {
         Task {
             do {
-                // Try to fetch quotes from your API
-                let quotes = try await fetchQuotesFromAPI()
-                let currentDate = Date()
                 
-                // If we got quotes, create timeline entries
+                let currentPageInfo = getAppPageInfo()
+                
+                let shouldAdvancePage = shouldUpdatePage(lastUpdate: currentPageInfo.lastUpdateDate)
+                
+                let pageToFetch: Int
+                if shouldAdvancePage {
+                    pageToFetch = currentPageInfo.currentPage + 1
+                    let newPageInfo = QuoteService.QuotePageInfo(
+                        currentPage: pageToFetch,
+                        lastUpdateDate: Date()
+                    )
+                    saveAppPageInfo(newPageInfo)
+                } else {
+                    pageToFetch = currentPageInfo.currentPage
+                }
+                
+                let quotes = try await fetchQuotesFromAPI(page: pageToFetch)
+                
                 if !quotes.isEmpty {
+                    let currentDate = Date()
                     var entries: [QuoteEntry] = []
                     
-                    // Update every 4 hours with different quotes
-                    for hourOffset in stride(from: 0, to: 24, by: 4) {
+                    for hourOffset in stride(from: 0, to: 16, by: 4) {
                         let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
                         let quote = quotes[hourOffset / 4 % quotes.count]
                         let entry = QuoteEntry(date: entryDate, quote: quote)
                         entries.append(entry)
                     }
                     
-                    // Cache quotes locally for offline use
-                    cacheQuotes(quotes)
+                    cacheQuotes(quotes, forPage: pageToFetch)
                     
-                    // Refresh timeline at the end of the day
-                    let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
-                    let timeline = Timeline(entries: entries, policy: .after(tomorrow))
+                    let nextRefresh = Calendar.current.date(byAdding: .hour, value: 4, to: currentDate) ?? currentDate
+                    let timeline = Timeline(entries: entries, policy: .after(nextRefresh))
                     completion(timeline)
+                    
+                   
                 } else {
-                    // No quotes received, use cached or fallback
                     handleNoQuotes(completion: completion)
                 }
                 
             } catch {
-                print("Widget: Error fetching quotes: \(error)")
-                // Try to use cached quotes first, then fallback
                 handleNoQuotes(completion: completion)
             }
         }
     }
     
-    private func fetchQuotesFromAPI() async throws -> [QuoteService.Quote] {
-        let baseURL = "https://motivation.kakhoshvili.com/api"
+    private func shouldUpdatePage(lastUpdate: Date) -> Bool {
+        let timeSinceUpdate = Date().timeIntervalSince(lastUpdate)
+        let threshold: TimeInterval = 4 * 60 * 60 // 4 hours - EXACT same as app
+        let shouldUpdate = timeSinceUpdate >= threshold
+     
+        return shouldUpdate
+    }
+    
+    private func getAppPageInfo() -> QuoteService.QuotePageInfo {
+        let defaults = UserDefaults(suiteName: "group.com.takomenteshashvili.MotivationApp")
         
-        // Get current page info (similar to your QuoteService)
-        let pageInfo = getCurrentPageInfo()
-        let url = URL(string: "\(baseURL)/quotes?page=\(pageInfo.currentPage)")!
+        if let data = defaults?.data(forKey: "pageInfo"),
+           let pageInfo = try? JSONDecoder().decode(QuoteService.QuotePageInfo.self, from: data) {
+            return pageInfo
+        }
+        
+        let newPageInfo = QuoteService.QuotePageInfo(currentPage: 1, lastUpdateDate: Date())
+        saveAppPageInfo(newPageInfo)
+        return newPageInfo
+    }
+    
+    private func saveAppPageInfo(_ pageInfo: QuoteService.QuotePageInfo) {
+        let defaults = UserDefaults(suiteName: "group.com.takomenteshashvili.MotivationApp")
+        
+        if let encoded = try? JSONEncoder().encode(pageInfo) {
+            defaults?.set(encoded, forKey: "pageInfo") // SAME key as app
+        }
+    }
+    
+    private func fetchQuotesFromAPI(page: Int) async throws -> [QuoteService.Quote] {
+        let baseURL = "https://motivation.kakhoshvili.com/api"
+        let url = URL(string: "\(baseURL)/quotes?page=\(page)")!
+        
         
         let (data, response) = try await URLSession.shared.data(from: url)
         
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
-            throw NetworkError.serverError(message: "Failed to fetch quotes")
+            throw NSError(domain: "WidgetError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch quotes"])
         }
         
         let quotesResponse = try JSONDecoder().decode(QuoteService.Quotes.self, from: data)
         return quotesResponse.quotes
     }
     
-    private func getCurrentPageInfo() -> QuoteService.QuotePageInfo {
-        let defaults = UserDefaults(suiteName: "group.com.takomenteshashvili.MotivationApp")
-        
-        if let data = defaults?.data(forKey: "widgetPageInfo"),
-           let pageInfo = try? JSONDecoder().decode(QuoteService.QuotePageInfo.self, from: data) {
-            return pageInfo
-        }
-        
-        // Default to page 1 if no info available
-        return QuoteService.QuotePageInfo(currentPage: 1, lastUpdateDate: Date())
-    }
-    
-    private func cacheQuotes(_ quotes: [QuoteService.Quote]) {
+    private func cacheQuotes(_ quotes: [QuoteService.Quote], forPage page: Int) {
         let defaults = UserDefaults(suiteName: "group.com.takomenteshashvili.MotivationApp")
         if let encoded = try? JSONEncoder().encode(quotes) {
             defaults?.set(encoded, forKey: "cachedWidgetQuotes")
             defaults?.set(Date(), forKey: "quotesLastCached")
+            defaults?.set(page, forKey: "cachedQuotesPage")
         }
     }
     
     private func getCachedQuotes() -> [QuoteService.Quote]? {
         let defaults = UserDefaults(suiteName: "group.com.takomenteshashvili.MotivationApp")
         
-        // Check if cached quotes are recent (less than 24 hours old)
         if let lastCached = defaults?.object(forKey: "quotesLastCached") as? Date,
-           Date().timeIntervalSince(lastCached) < 24 * 60 * 60,
+           Date().timeIntervalSince(lastCached) < 8 * 60 * 60,
            let data = defaults?.data(forKey: "cachedWidgetQuotes"),
            let quotes = try? JSONDecoder().decode([QuoteService.Quote].self, from: data) {
+            
+            let cachedPage = defaults?.integer(forKey: "cachedQuotesPage") ?? 1
             return quotes
         }
         
@@ -122,16 +154,14 @@ struct QuoteProvider: TimelineProvider {
     }
     
     private func handleNoQuotes(completion: @escaping (Timeline<QuoteEntry>) -> ()) {
-        // Try cached quotes first
         if let cachedQuotes = getCachedQuotes(), !cachedQuotes.isEmpty {
             let entry = QuoteEntry(date: Date(), quote: cachedQuotes.randomElement()!)
-            let timeline = Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(1800))) // Retry in 30 minutes
+            let timeline = Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600)))
             completion(timeline)
         } else {
-            // Use fallback quotes as last resort
             let fallbackQuotes = getFallbackQuotes()
             let entry = QuoteEntry(date: Date(), quote: fallbackQuotes.randomElement()!)
-            let timeline = Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600))) // Retry in 1 hour
+            let timeline = Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(7200)))
             completion(timeline)
         }
     }
@@ -147,13 +177,7 @@ struct QuoteProvider: TimelineProvider {
     }
 }
 
-// MARK: - Timeline Entry
-struct QuoteEntry: TimelineEntry {
-    let date: Date
-    let quote: QuoteService.Quote
-}
 
-// MARK: - Widget Views
 struct QuoteWidgetSmallView: View {
     let entry: QuoteEntry
     
@@ -202,7 +226,6 @@ struct QuoteWidgetMediumView: View {
             
             Spacer()
             
-            // Quote icon or decorative element
             Image(systemName: "quote.closing")
                 .font(.system(size: 30, weight: .light))
                 .foregroundColor(.blue.opacity(0.3))
@@ -267,7 +290,6 @@ struct QuoteWidgetLargeView: View {
     }
 }
 
-// MARK: - Main Widget Entry View
 struct QuoteWidgetEntryView: View {
     @Environment(\.widgetFamily) var family
     let entry: QuoteEntry
@@ -286,7 +308,6 @@ struct QuoteWidgetEntryView: View {
     }
 }
 
-// MARK: - Widget Configuration
 struct DailyQuoteWidget: Widget {
     let kind: String = "DailyQuoteWidget"
 
